@@ -1,0 +1,686 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="余航">
+  <meta name="keywords" content="余航个人博客">
+  
+    <meta name="description" content="形如下图所示效果，可多选选项并展示标签，超多所设定最大标签数则将其隐藏并显示对应数目 muiltpleSelect.vue1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374">
+<meta property="og:type" content="article">
+<meta property="og:title" content="下拉多选组件">
+<meta property="og:url" content="https://yuhang111881.github.io/yuhang111881.github.io/2024/01/10/%E5%A4%9A%E9%80%89/index.html">
+<meta property="og:site_name" content="余航的博客">
+<meta property="og:description" content="形如下图所示效果，可多选选项并展示标签，超多所设定最大标签数则将其隐藏并显示对应数目 muiltpleSelect.vue1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-01-10T07:50:00.000Z">
+<meta property="article:modified_time" content="2024-01-18T09:09:33.892Z">
+<meta property="article:author" content="余航">
+<meta property="article:tag" content="uniapp">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>下拉多选组件 - 余航的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"yuhang111881.github.io","root":"/","version":"1.9.3","typing":{"enable":true,"typeSpeed":90,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>小余的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/1.jpg') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="下拉多选组件"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        余航
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-01-10 15:50" pubdate>
+          2024年1月10日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          20k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          168 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">下拉多选组件</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>形如下图所示效果，可多选选项并展示标签，超多所设定最大标签数则将其隐藏并显示对应数目</p>
+<h1 id="muiltpleSelect-vue"><a href="#muiltpleSelect-vue" class="headerlink" title="muiltpleSelect.vue"></a>muiltpleSelect.vue</h1><figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br><span class="line">334</span><br><span class="line">335</span><br><span class="line">336</span><br><span class="line">337</span><br><span class="line">338</span><br><span class="line">339</span><br><span class="line">340</span><br><span class="line">341</span><br><span class="line">342</span><br><span class="line">343</span><br><span class="line">344</span><br><span class="line">345</span><br><span class="line">346</span><br><span class="line">347</span><br><span class="line">348</span><br><span class="line">349</span><br><span class="line">350</span><br><span class="line">351</span><br><span class="line">352</span><br><span class="line">353</span><br><span class="line">354</span><br><span class="line">355</span><br><span class="line">356</span><br><span class="line">357</span><br><span class="line">358</span><br><span class="line">359</span><br><span class="line">360</span><br><span class="line">361</span><br><span class="line">362</span><br><span class="line">363</span><br><span class="line">364</span><br><span class="line">365</span><br><span class="line">366</span><br><span class="line">367</span><br><span class="line">368</span><br><span class="line">369</span><br><span class="line">370</span><br><span class="line">371</span><br><span class="line">372</span><br><span class="line">373</span><br><span class="line">374</span><br><span class="line">375</span><br><span class="line">376</span><br><span class="line">377</span><br><span class="line">378</span><br><span class="line">379</span><br><span class="line">380</span><br><span class="line">381</span><br><span class="line">382</span><br><span class="line">383</span><br><span class="line">384</span><br><span class="line">385</span><br><span class="line">386</span><br><span class="line">387</span><br><span class="line">388</span><br><span class="line">389</span><br><span class="line">390</span><br><span class="line">391</span><br><span class="line">392</span><br><span class="line">393</span><br><span class="line">394</span><br><span class="line">395</span><br><span class="line">396</span><br><span class="line">397</span><br><span class="line">398</span><br><span class="line">399</span><br><span class="line">400</span><br><span class="line">401</span><br><span class="line">402</span><br><span class="line">403</span><br><span class="line">404</span><br><span class="line">405</span><br><span class="line">406</span><br><span class="line">407</span><br><span class="line">408</span><br><span class="line">409</span><br><span class="line">410</span><br><span class="line">411</span><br><span class="line">412</span><br><span class="line">413</span><br><span class="line">414</span><br><span class="line">415</span><br><span class="line">416</span><br><span class="line">417</span><br><span class="line">418</span><br><span class="line">419</span><br><span class="line">420</span><br><span class="line">421</span><br><span class="line">422</span><br><span class="line">423</span><br><span class="line">424</span><br><span class="line">425</span><br><span class="line">426</span><br><span class="line">427</span><br><span class="line">428</span><br><span class="line">429</span><br><span class="line">430</span><br><span class="line">431</span><br><span class="line">432</span><br><span class="line">433</span><br><span class="line">434</span><br><span class="line">435</span><br><span class="line">436</span><br><span class="line">437</span><br><span class="line">438</span><br><span class="line">439</span><br><span class="line">440</span><br><span class="line">441</span><br><span class="line">442</span><br><span class="line">443</span><br><span class="line">444</span><br><span class="line">445</span><br><span class="line">446</span><br><span class="line">447</span><br><span class="line">448</span><br><span class="line">449</span><br><span class="line">450</span><br><span class="line">451</span><br><span class="line">452</span><br><span class="line">453</span><br><span class="line">454</span><br><span class="line">455</span><br><span class="line">456</span><br><span class="line">457</span><br><span class="line">458</span><br><span class="line">459</span><br><span class="line">460</span><br><span class="line">461</span><br><span class="line">462</span><br><span class="line">463</span><br><span class="line">464</span><br><span class="line">465</span><br><span class="line">466</span><br><span class="line">467</span><br><span class="line">468</span><br><span class="line">469</span><br><span class="line">470</span><br><span class="line">471</span><br><span class="line">472</span><br><span class="line">473</span><br><span class="line">474</span><br><span class="line">475</span><br><span class="line">476</span><br><span class="line">477</span><br><span class="line">478</span><br><span class="line">479</span><br><span class="line">480</span><br><span class="line">481</span><br><span class="line">482</span><br><span class="line">483</span><br><span class="line">484</span><br><span class="line">485</span><br><span class="line">486</span><br><span class="line">487</span><br><span class="line">488</span><br><span class="line">489</span><br><span class="line">490</span><br><span class="line">491</span><br><span class="line">492</span><br><span class="line">493</span><br><span class="line">494</span><br><span class="line">495</span><br><span class="line">496</span><br><span class="line">497</span><br><span class="line">498</span><br><span class="line">499</span><br><span class="line">500</span><br><span class="line">501</span><br><span class="line">502</span><br><span class="line">503</span><br><span class="line">504</span><br><span class="line">505</span><br><span class="line">506</span><br><span class="line">507</span><br><span class="line">508</span><br><span class="line">509</span><br><span class="line">510</span><br><span class="line">511</span><br><span class="line">512</span><br><span class="line">513</span><br><span class="line">514</span><br><span class="line">515</span><br><span class="line">516</span><br><span class="line">517</span><br><span class="line">518</span><br><span class="line">519</span><br><span class="line">520</span><br><span class="line">521</span><br><span class="line">522</span><br><span class="line">523</span><br><span class="line">524</span><br><span class="line">525</span><br><span class="line">526</span><br><span class="line">527</span><br><span class="line">528</span><br><span class="line">529</span><br><span class="line">530</span><br><span class="line">531</span><br><span class="line">532</span><br><span class="line">533</span><br><span class="line">534</span><br><span class="line">535</span><br><span class="line">536</span><br><span class="line">537</span><br><span class="line">538</span><br><span class="line">539</span><br><span class="line">540</span><br><span class="line">541</span><br><span class="line">542</span><br><span class="line">543</span><br><span class="line">544</span><br><span class="line">545</span><br><span class="line">546</span><br><span class="line">547</span><br><span class="line">548</span><br><span class="line">549</span><br><span class="line">550</span><br><span class="line">551</span><br><span class="line">552</span><br><span class="line">553</span><br><span class="line">554</span><br><span class="line">555</span><br><span class="line">556</span><br><span class="line">557</span><br><span class="line">558</span><br><span class="line">559</span><br><span class="line">560</span><br><span class="line">561</span><br><span class="line">562</span><br><span class="line">563</span><br><span class="line">564</span><br><span class="line">565</span><br><span class="line">566</span><br><span class="line">567</span><br><span class="line">568</span><br><span class="line">569</span><br><span class="line">570</span><br><span class="line">571</span><br><span class="line">572</span><br><span class="line">573</span><br><span class="line">574</span><br><span class="line">575</span><br><span class="line">576</span><br><span class="line">577</span><br><span class="line">578</span><br><span class="line">579</span><br><span class="line">580</span><br><span class="line">581</span><br><span class="line">582</span><br><span class="line">583</span><br><span class="line">584</span><br><span class="line">585</span><br><span class="line">586</span><br><span class="line">587</span><br><span class="line">588</span><br><span class="line">589</span><br><span class="line">590</span><br><span class="line">591</span><br><span class="line">592</span><br><span class="line">593</span><br><span class="line">594</span><br><span class="line">595</span><br><span class="line">596</span><br><span class="line">597</span><br><span class="line">598</span><br><span class="line">599</span><br><span class="line">600</span><br><span class="line">601</span><br><span class="line">602</span><br><span class="line">603</span><br><span class="line">604</span><br><span class="line">605</span><br><span class="line">606</span><br><span class="line">607</span><br><span class="line">608</span><br><span class="line">609</span><br><span class="line">610</span><br><span class="line">611</span><br><span class="line">612</span><br><span class="line">613</span><br><span class="line">614</span><br><span class="line">615</span><br><span class="line">616</span><br><span class="line">617</span><br><span class="line">618</span><br><span class="line">619</span><br><span class="line">620</span><br><span class="line">621</span><br><span class="line">622</span><br><span class="line">623</span><br><span class="line">624</span><br><span class="line">625</span><br><span class="line">626</span><br><span class="line">627</span><br><span class="line">628</span><br><span class="line">629</span><br><span class="line">630</span><br><span class="line">631</span><br><span class="line">632</span><br><span class="line">633</span><br><span class="line">634</span><br><span class="line">635</span><br><span class="line">636</span><br><span class="line">637</span><br><span class="line">638</span><br><span class="line">639</span><br><span class="line">640</span><br><span class="line">641</span><br><span class="line">642</span><br><span class="line">643</span><br><span class="line">644</span><br><span class="line">645</span><br><span class="line">646</span><br><span class="line">647</span><br><span class="line">648</span><br><span class="line">649</span><br><span class="line">650</span><br><span class="line">651</span><br><span class="line">652</span><br><span class="line">653</span><br><span class="line">654</span><br><span class="line">655</span><br><span class="line">656</span><br><span class="line">657</span><br><span class="line">658</span><br><span class="line">659</span><br><span class="line">660</span><br><span class="line">661</span><br><span class="line">662</span><br><span class="line">663</span><br><span class="line">664</span><br><span class="line">665</span><br><span class="line">666</span><br><span class="line">667</span><br><span class="line">668</span><br><span class="line">669</span><br><span class="line">670</span><br><span class="line">671</span><br><span class="line">672</span><br><span class="line">673</span><br><span class="line">674</span><br><span class="line">675</span><br><span class="line">676</span><br><span class="line">677</span><br><span class="line">678</span><br><span class="line">679</span><br><span class="line">680</span><br><span class="line">681</span><br><span class="line">682</span><br><span class="line">683</span><br><span class="line">684</span><br><span class="line">685</span><br><span class="line">686</span><br><span class="line">687</span><br><span class="line">688</span><br><span class="line">689</span><br><span class="line">690</span><br><span class="line">691</span><br><span class="line">692</span><br><span class="line">693</span><br><span class="line">694</span><br><span class="line">695</span><br><span class="line">696</span><br><span class="line">697</span><br><span class="line">698</span><br><span class="line">699</span><br><span class="line">700</span><br><span class="line">701</span><br><span class="line">702</span><br><span class="line">703</span><br><span class="line">704</span><br><span class="line">705</span><br><span class="line">706</span><br><span class="line">707</span><br><span class="line">708</span><br><span class="line">709</span><br><span class="line">710</span><br><span class="line">711</span><br><span class="line">712</span><br><span class="line">713</span><br><span class="line">714</span><br><span class="line">715</span><br><span class="line">716</span><br><span class="line">717</span><br><span class="line">718</span><br><span class="line">719</span><br><span class="line">720</span><br><span class="line">721</span><br><span class="line">722</span><br><span class="line">723</span><br><span class="line">724</span><br><span class="line">725</span><br><span class="line">726</span><br><span class="line">727</span><br><span class="line">728</span><br><span class="line">729</span><br><span class="line">730</span><br><span class="line">731</span><br><span class="line">732</span><br><span class="line">733</span><br><span class="line">734</span><br><span class="line">735</span><br><span class="line">736</span><br><span class="line">737</span><br><span class="line">738</span><br><span class="line">739</span><br><span class="line">740</span><br><span class="line">741</span><br><span class="line">742</span><br><span class="line">743</span><br><span class="line">744</span><br><span class="line">745</span><br><span class="line">746</span><br><span class="line">747</span><br><span class="line">748</span><br><span class="line">749</span><br><span class="line">750</span><br><span class="line">751</span><br><span class="line">752</span><br><span class="line">753</span><br><span class="line">754</span><br><span class="line">755</span><br><span class="line">756</span><br><span class="line">757</span><br><span class="line">758</span><br><span class="line">759</span><br><span class="line">760</span><br><span class="line">761</span><br><span class="line">762</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">&lt;template&gt;<br>  &lt;view <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;uni-stat__select&quot;</span>&gt;<br>    &lt;span v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;label&quot;</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;uni-label-text&quot;</span>&gt;&#123;&#123;label + <span class="hljs-string">&#x27;：&#x27;</span>&#125;&#125;&lt;/span&gt;<br>    &lt;view <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;uni-stat-box&quot;</span> :<span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;&#123;&#x27;uni-stat__actived&#x27;: current&#125;&quot;</span>&gt;<br>      &lt;view <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;uni-select&quot;</span> :style=<span class="hljs-string">&quot;&#123;height:multiple?&#x27;100%&#x27;:&#x27; 35px;&#x27;&#125;&quot;</span><br>            :<span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;&#123;&#x27;uni-select--disabled&#x27;:disabled&#125;&quot;</span>&gt;<br>        &lt;view <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;uni-select__input-box&quot;</span> :style=<span class="hljs-string">&quot;&#123;height:multiple?&#x27;100%&#x27;:&#x27;35px;&#x27;&#125;&quot;</span> <span class="hljs-meta">@click</span>=<span class="hljs-string">&quot;toggleSelector&quot;</span>&gt;<br>          &lt;view <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;&quot;</span> style=<span class="hljs-string">&quot;display: flex;flex-wrap: wrap;width: 100%;&quot;</span> v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;multiple&amp;&amp;current.length&gt;0&quot;</span>&gt;<br>            &lt;view <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;tag-calss&quot;</span><br>                  v-<span class="hljs-keyword">for</span>=<span class="hljs-string">&quot;(item,index) in collapseTags?current.slice(0,collapseTagsNum):current&quot;</span><br>                  :key=<span class="hljs-string">&quot;item[dataValue]&quot;</span>&gt;<br>              &lt;span <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;&#123;&#123;item[dataKey]&#125;&#125;&lt;/span&gt;<br>              &lt;view <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;&quot;</span> <span class="hljs-meta">@click</span>.stop=<span class="hljs-string">&quot;delItem(item)&quot;</span>&gt;<br>                &lt;uni-icons type=<span class="hljs-string">&quot;clear&quot;</span> style=<span class="hljs-string">&quot;margin-left: 4px;&quot;</span> color=<span class="hljs-string">&quot;#c0c4cc&quot;</span> /&gt;<br>              &lt;/view&gt;<br>            &lt;/view&gt;<br>            &lt;view v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;current.length&gt;collapseTagsNum&amp;&amp;collapseTags&quot;</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;tag-calss&quot;</span>&gt;<br>              &lt;span <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;text&quot;</span>&gt;+&#123;&#123;current.length-collapseTagsNum&#125;&#125;&lt;/span&gt;<br>            &lt;/view&gt;<br>          &lt;/view&gt;<br>          &lt;view v-<span class="hljs-keyword">else</span>-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;current&amp;&amp;current.length&gt;0&amp;&amp;!filterable&quot;</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;uni-select__input-text&quot;</span>&gt;&#123;&#123;current&#125;&#125;<br>          &lt;/view&gt;<br>          &lt;input v-<span class="hljs-keyword">else</span>-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;filterable&quot;</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;uni-select__input-text&quot;</span> type=<span class="hljs-string">&quot;text&quot;</span> style=<span class="hljs-string">&quot;font-size: 12px;&quot;</span><br>                 :placeholder=<span class="hljs-string">&quot;placeholderOld&quot;</span> v-model=<span class="hljs-string">&quot;current&quot;</span>&gt;<br>          &lt;view v-<span class="hljs-keyword">else</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;uni-select__input-text uni-select__input-placeholder&quot;</span>&gt;&#123;&#123;typePlaceholder&#125;&#125;&lt;/view&gt;<br>          &lt;uni-icons v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;current &amp;&amp; clear&quot;</span> type=<span class="hljs-string">&quot;clear&quot;</span> color=<span class="hljs-string">&quot;#c0c4cc&quot;</span> size=<span class="hljs-string">&quot;24&quot;</span> <span class="hljs-meta">@click</span>=<span class="hljs-string">&quot;clearVal&quot;</span> /&gt;<br>          &lt;uni-icons v-<span class="hljs-keyword">else</span> :type=<span class="hljs-string">&quot;showSelector? &#x27;top&#x27; : &#x27;bottom&#x27;&quot;</span> size=<span class="hljs-string">&quot;14&quot;</span> color=<span class="hljs-string">&quot;#999&quot;</span> /&gt;<br>        &lt;/view&gt;<br>        &lt;view <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;uni-select--mask&quot;</span> v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;showSelector&quot;</span> <span class="hljs-meta">@click</span>=<span class="hljs-string">&quot;toggleSelector&quot;</span> /&gt;<br>        &lt;view <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;uni-select__selector&quot;</span> v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;showSelector&quot;</span>&gt;<br>          &lt;view <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;uni-popper__arrow&quot;</span>&gt;&lt;/view&gt;<br>          &lt;scroll-view scroll-y=<span class="hljs-string">&quot;true&quot;</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;uni-select__selector-scroll&quot;</span>&gt;<br>            &lt;view <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;uni-select__selector-empty&quot;</span> v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;filterMixinDatacomResData.length === 0&quot;</span>&gt;<br>              &lt;span&gt;&#123;&#123;emptyTips&#125;&#125;&lt;/span&gt;<br>            &lt;/view&gt;<br>            &lt;view v-<span class="hljs-keyword">else</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;uni-select__selector-item&quot;</span><br>                  style=<span class="hljs-string">&quot;display: flex;justify-content: space-between;align-items: center;&quot;</span><br>                  v-<span class="hljs-keyword">for</span>=<span class="hljs-string">&quot;(item,index) in filterMixinDatacomResData&quot;</span> :key=<span class="hljs-string">&quot;index&quot;</span> <span class="hljs-meta">@click</span>=<span class="hljs-string">&quot;change(item)&quot;</span>&gt;<br>							&lt;span<br>                  :<span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;&#123;&#x27;uni-select__selector__disabled&#x27;: item.disable&#125;&quot;</span>&gt;&#123;&#123;formatItemName(item)&#125;&#125;&lt;/span&gt;<br>              &lt;uni-icons v-<span class="hljs-keyword">if</span>=<span class="hljs-string">&quot;multiple&amp;&amp;currentArr.includes(item[dataValue])&quot;</span> type=<span class="hljs-string">&quot;checkmarkempty&quot;</span><br>                         color=<span class="hljs-string">&quot;#007aff&quot;</span> /&gt;<br>            &lt;/view&gt;<br>          &lt;/scroll-view&gt;<br>        &lt;/view&gt;<br>      &lt;/view&gt;<br>    &lt;/view&gt;<br>  &lt;/view&gt;<br>&lt;/template&gt;<br><br>&lt;script&gt;<br><span class="hljs-comment">/**</span><br><span class="hljs-comment"> * DataChecklist 数据选择器</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@description</span> 通过数据渲染的下拉框组件</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@tutorial</span> https://uniapp.dcloud.io/component/uniui/uni-data-select</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@property</span> &#123;String&#125; value 默认值</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@property</span> &#123;Array&#125; localdata 本地数据 ，格式 [&#123;text:&#x27;&#x27;,value:&#x27;&#x27;&#125;]</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@property</span> &#123;Boolean&#125; clear 是否可以清空已选项</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@property</span> &#123;Boolean&#125; emptyText 没有数据时显示的文字 ，本地数据无效</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@property</span> &#123;String&#125; label 左侧标题</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@property</span> &#123;String&#125; placeholder 输入框的提示文字</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@property</span> &#123;Boolean&#125; disabled 是否禁用</span><br><span class="hljs-comment"> * <span class="hljs-doctag">@event</span> &#123;Function&#125; change  选中发生变化触发</span><br><span class="hljs-comment"> */</span><br><br>export default &#123;<br>  name: <span class="hljs-string">&quot;my-selectCheckbox&quot;</span>,<br>  mixins: [uniCloud.mixinDatacom || &#123;&#125;],<br>  props: &#123;<br>    collapseTagsNum: &#123;<br>      type: Number,<br>      default: <span class="hljs-number">1</span><br>    &#125;,<br>    collapseTags: &#123;<br>      type: <span class="hljs-built_in">Boolean</span>,<br>      default: <span class="hljs-literal">false</span><br>    &#125;,<br>    dataKey: &#123;<br>      type: [String],<br>      default: <span class="hljs-string">&#x27;text&#x27;</span><br>    &#125;,<br>    dataValue: &#123;<br>      type: [String],<br>      default: <span class="hljs-string">&#x27;value&#x27;</span><br>    &#125;,<br>    multiple: &#123;<br>      type: <span class="hljs-built_in">Boolean</span>,<br>      default: <span class="hljs-literal">false</span><br>    &#125;,<br>    filterable: &#123;<br>      type: <span class="hljs-built_in">Boolean</span>,<br>      default: <span class="hljs-literal">false</span><br>    &#125;,<br>    localdata: &#123;<br>      type: Array,<br>      default () &#123;<br>        <span class="hljs-keyword">return</span> []<br>      &#125;<br>    &#125;,<br>    <span class="hljs-comment">// #ifndef VUE3</span><br>    value: &#123;<br>      type: [String, Number, Array],<br>      default: <span class="hljs-string">&#x27;&#x27;</span><br>    &#125;,<br>    <span class="hljs-comment">// #endif</span><br>    <span class="hljs-comment">// #ifdef VUE3</span><br>    modelValue: &#123;<br>      type: [String, Number, Array],<br>      default: <span class="hljs-string">&#x27;&#x27;</span><br>    &#125;,<br>    <span class="hljs-comment">// #endif</span><br>    label: &#123;<br>      type: String,<br>      default: <span class="hljs-string">&#x27;&#x27;</span><br>    &#125;,<br>    placeholder: &#123;<br>      type: String,<br>      default: <span class="hljs-string">&#x27;请选择&#x27;</span><br>    &#125;,<br>    emptyTips: &#123;<br>      type: String,<br>      default: <span class="hljs-string">&#x27;无选项&#x27;</span><br>    &#125;,<br>    clear: &#123;<br>      type: <span class="hljs-built_in">Boolean</span>,<br>      default: <span class="hljs-literal">true</span><br>    &#125;,<br>    defItem: &#123;<br>      type: Number,<br>      default: <span class="hljs-number">0</span><br>    &#125;,<br>    disabled: &#123;<br>      type: <span class="hljs-built_in">Boolean</span>,<br>      default: <span class="hljs-literal">false</span><br>    &#125;,<br>    <span class="hljs-comment">// 格式化输出 用法 field=&quot;_id as value, version as text, uni_platform as label&quot; format=&quot;&#123;label&#125; - &#123;text&#125;&quot;</span><br>    format: &#123;<br>      type: String,<br>      default: <span class="hljs-string">&#x27;&#x27;</span><br>    &#125;,<br>  &#125;,<br>  <span class="hljs-keyword">data</span>() &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>      showSelector: <span class="hljs-literal">false</span>,<br>      current: [],<br>      mixinDatacomResData: [],<br>      apps: [],<br>      channels: [],<br>      cacheKey: <span class="hljs-string">&quot;uni-data-select-lastSelectedValue&quot;</span>,<br>      placeholderOld: <span class="hljs-string">&quot;&quot;</span>,<br>      currentArr: []<br>    &#125;;<br>  &#125;,<br>  created() &#123;<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.multiple) &#123;<br>      <span class="hljs-comment">// #ifndef VUE3</span><br>      <span class="hljs-keyword">this</span>.currentArr = <span class="hljs-keyword">this</span>.value || []<br>      <span class="hljs-comment">// #endif</span><br>      <span class="hljs-comment">// #ifdef VUE3</span><br>      <span class="hljs-keyword">this</span>.currentArr = <span class="hljs-keyword">this</span>.modelValue || []<br>      <span class="hljs-comment">// #endif</span><br>      <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.current) &#123;<br>        <span class="hljs-keyword">this</span>.current = []<br>      &#125;<br>      <span class="hljs-comment">// #ifndef VUE3</span><br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.value &amp;&amp; <span class="hljs-keyword">this</span>.value.length &gt; <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-keyword">this</span>.filterMixinDatacomResData.length &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">this</span>.value.forEach(item =&gt; &#123;<br>          let current = <span class="hljs-keyword">this</span>.filterMixinDatacomResData.find(e =&gt;<br>              e[<span class="hljs-keyword">this</span>.dataValue] == item<br>          )<br>          <span class="hljs-comment">// this.current.push(current)</span><br>        &#125;)<br>      &#125;<br>      <span class="hljs-comment">// #endif</span><br>      <span class="hljs-comment">// #ifdef VUE3</span><br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.modelValue &amp;&amp; <span class="hljs-keyword">this</span>.modelValue.length &gt; <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-keyword">this</span>.filterMixinDatacomResData.length &gt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">this</span>.modelValue.forEach(item =&gt; &#123;<br>          let current = <span class="hljs-keyword">this</span>.filterMixinDatacomResData.find(e =&gt;<br>              e[<span class="hljs-keyword">this</span>.dataValue] == item<br>          )<br>          <span class="hljs-keyword">this</span>.current.push(current)<br>        &#125;)<br>      &#125;<br>      <span class="hljs-comment">// #endif</span><br><br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>      <span class="hljs-comment">// #ifndef VUE3</span><br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.value) &#123;<br>        <span class="hljs-keyword">this</span>.current = <span class="hljs-keyword">this</span>.formatItemName(<span class="hljs-keyword">this</span>.filterMixinDatacomResData.find(e =&gt;<br>            e[<span class="hljs-keyword">this</span>.dataValue] == <span class="hljs-keyword">this</span>.value<br>        ))<br>      &#125;<br>      <span class="hljs-comment">// #endif</span><br>      <span class="hljs-comment">// #ifdef VUE3</span><br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.modelValue) &#123;<br>        <span class="hljs-keyword">this</span>.current = <span class="hljs-keyword">this</span>.formatItemName(<span class="hljs-keyword">this</span>.filterMixinDatacomResData.find(e =&gt;<br>            e[<span class="hljs-keyword">this</span>.dataValue] == <span class="hljs-keyword">this</span>.modelValue<br>        ))<br>      &#125;<br>      <span class="hljs-comment">// #endif</span><br>    &#125;<br>    <span class="hljs-keyword">this</span>.placeholderOld = <span class="hljs-keyword">this</span>.placeholder<br>    <span class="hljs-keyword">this</span>.debounceGet = <span class="hljs-keyword">this</span>.debounce(() =&gt; &#123;<br>      <span class="hljs-keyword">this</span>.query();<br>    &#125;, <span class="hljs-number">300</span>);<br>    <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.collection &amp;&amp; !<span class="hljs-keyword">this</span>.localdata.length) &#123;<br>      <span class="hljs-keyword">this</span>.debounceGet();<br>    &#125;<br>  &#125;,<br>  computed: &#123;<br>    filterMixinDatacomResData() &#123;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.filterable &amp;&amp; <span class="hljs-keyword">this</span>.current) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.mixinDatacomResData.filter(e =&gt; e[<span class="hljs-keyword">this</span>.dataKey].includes(<span class="hljs-keyword">this</span>.current))<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.mixinDatacomResData<br>      &#125;<br>    &#125;,<br>    typePlaceholder() &#123;<br>      <span class="hljs-keyword">const</span> text = &#123;<br>        <span class="hljs-string">&#x27;opendb-stat-app-versions&#x27;</span>: <span class="hljs-string">&#x27;版本&#x27;</span>,<br>        <span class="hljs-string">&#x27;opendb-app-channels&#x27;</span>: <span class="hljs-string">&#x27;渠道&#x27;</span>,<br>        <span class="hljs-string">&#x27;opendb-app-list&#x27;</span>: <span class="hljs-string">&#x27;应用&#x27;</span><br>      &#125;<br>      <span class="hljs-keyword">const</span> common = <span class="hljs-keyword">this</span>.placeholder<br>      <span class="hljs-keyword">const</span> placeholder = text[<span class="hljs-keyword">this</span>.collection]<br>      <span class="hljs-keyword">return</span> placeholder ?<br>          common + placeholder :<br>          common<br>    &#125;,<br>    valueCom() &#123;<br>      <span class="hljs-comment">// #ifdef VUE3</span><br>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.modelValue;<br>      <span class="hljs-comment">// #endif</span><br>      <span class="hljs-comment">// #ifndef VUE3</span><br>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.value;<br>      <span class="hljs-comment">// #endif</span><br>    &#125;<br>  &#125;,<br>  watch: &#123;<br>    localdata: &#123;<br>      immediate: <span class="hljs-literal">true</span>,<br>      handler(<span class="hljs-keyword">val</span>, old) &#123;<br>        <span class="hljs-keyword">if</span> (Array.isArray(<span class="hljs-keyword">val</span>) &amp;&amp; old !== <span class="hljs-keyword">val</span>) &#123;<br>          <span class="hljs-keyword">this</span>.mixinDatacomResData = <span class="hljs-keyword">val</span><br>        &#125;<br><br>      &#125;<br>    &#125;,<br>    valueCom(<span class="hljs-keyword">val</span>, old) &#123;<br>      <span class="hljs-keyword">this</span>.initDefVal()<br>    &#125;,<br>    mixinDatacomResData: &#123;<br>      immediate: <span class="hljs-literal">true</span>,<br>      handler(<span class="hljs-keyword">val</span>) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">val</span>.length) &#123;<br>          <span class="hljs-keyword">this</span>.initDefVal()<br>        &#125;<br>      &#125;<br>    &#125;,<br>    <span class="hljs-comment">// modelValue(val) &#123;</span><br>    <span class="hljs-comment">// 	if (this.multiple &amp;&amp; val &amp;&amp; val.length &gt; 0) &#123;</span><br>    <span class="hljs-comment">// 		this.currentArr = val</span><br>    <span class="hljs-comment">// 		if (!this.current) &#123;</span><br>    <span class="hljs-comment">// 			this.current = []</span><br>    <span class="hljs-comment">// 		&#125;</span><br>    <span class="hljs-comment">// 		val.forEach(item =&gt; &#123;</span><br>    <span class="hljs-comment">// 			let current = this.filterMixinDatacomResData.find(e =&gt;</span><br>    <span class="hljs-comment">// 				e[this.dataValue] == item</span><br>    <span class="hljs-comment">// 			)</span><br>    <span class="hljs-comment">// 			this.current.push(current)</span><br>    <span class="hljs-comment">// 		&#125;)</span><br>    <span class="hljs-comment">// 	&#125; else &#123;</span><br>    <span class="hljs-comment">// 		if (val) &#123;</span><br>    <span class="hljs-comment">// 			this.current = this.formatItemName(this.filterMixinDatacomResData.find(e =&gt;</span><br>    <span class="hljs-comment">// 				e[this.dataValue] == val</span><br>    <span class="hljs-comment">// 			))</span><br>    <span class="hljs-comment">// 		&#125;</span><br>    <span class="hljs-comment">// 	&#125;</span><br><br>    <span class="hljs-comment">// &#125;,</span><br>    <span class="hljs-comment">// value(val) &#123;</span><br>    <span class="hljs-comment">// 	if (this.multiple &amp;&amp; val &amp;&amp; val.length &gt; 0) &#123;</span><br>    <span class="hljs-comment">// 		this.currentArr = val</span><br>    <span class="hljs-comment">// 		if (!this.current) &#123;</span><br>    <span class="hljs-comment">// 			this.current = []</span><br>    <span class="hljs-comment">// 		&#125;</span><br>    <span class="hljs-comment">// 		val.forEach(item =&gt; &#123;</span><br>    <span class="hljs-comment">// 			let current = this.filterMixinDatacomResData.find(e =&gt;</span><br>    <span class="hljs-comment">// 				e[this.dataValue] == item</span><br>    <span class="hljs-comment">// 			)</span><br>    <span class="hljs-comment">// 			this.current.push(current)</span><br>    <span class="hljs-comment">// 		&#125;)</span><br>    <span class="hljs-comment">// 	&#125; else &#123;</span><br>    <span class="hljs-comment">// 		if (val) &#123;</span><br>    <span class="hljs-comment">// 			this.current = this.formatItemName(this.filterMixinDatacomResData.find(e =&gt;</span><br>    <span class="hljs-comment">// 				e[this.dataValue] == val</span><br>    <span class="hljs-comment">// 			))</span><br>    <span class="hljs-comment">// 		&#125;</span><br>    <span class="hljs-comment">// 	&#125;</span><br><br>    <span class="hljs-comment">// &#125;</span><br>  &#125;,<br>  methods: &#123;<br>    debounce(fn, time = <span class="hljs-number">100</span>) &#123;<br>      let timer = <span class="hljs-literal">null</span><br>      <span class="hljs-keyword">return</span> function(...args) &#123;<br>        <span class="hljs-keyword">if</span> (timer) clearTimeout(timer)<br>        timer = setTimeout(() =&gt; &#123;<br>          fn.apply(<span class="hljs-keyword">this</span>, args)<br>        &#125;, time)<br>      &#125;<br>    &#125;,<br>    <span class="hljs-comment">// 执行数据库查询</span><br>    query() &#123;<br>      <span class="hljs-keyword">this</span>.mixinDatacomEasyGet();<br>    &#125;,<br>    <span class="hljs-comment">// 监听查询条件变更事件</span><br>    onMixinDatacomPropsChange() &#123;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.collection) &#123;<br>        <span class="hljs-keyword">this</span>.debounceGet();<br>      &#125;<br>    &#125;,<br>    initDefVal() &#123;<br>      let defValue = <span class="hljs-string">&#x27;&#x27;</span><br>      <span class="hljs-keyword">if</span> ((<span class="hljs-keyword">this</span>.valueCom || <span class="hljs-keyword">this</span>.valueCom === <span class="hljs-number">0</span>) &amp;&amp; !<span class="hljs-keyword">this</span>.isDisabled(<span class="hljs-keyword">this</span>.valueCom)) &#123;<br>        defValue = <span class="hljs-keyword">this</span>.valueCom<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        let strogeValue<br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.collection) &#123;<br>          strogeValue = <span class="hljs-keyword">this</span>.getCache()<br>        &#125;<br>        <span class="hljs-keyword">if</span> (strogeValue || strogeValue === <span class="hljs-number">0</span>) &#123;<br>          defValue = strogeValue<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>          let defItem = <span class="hljs-string">&#x27;&#x27;</span><br>          <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.defItem &gt; <span class="hljs-number">0</span> &amp;&amp; <span class="hljs-keyword">this</span>.defItem &lt;= <span class="hljs-keyword">this</span>.mixinDatacomResData.length) &#123;<br>            defItem = <span class="hljs-keyword">this</span>.mixinDatacomResData[<span class="hljs-keyword">this</span>.defItem - <span class="hljs-number">1</span>][<span class="hljs-keyword">this</span>.dataValue]<br>          &#125;<br>          defValue = defItem<br>        &#125;<br>        <span class="hljs-keyword">if</span> (defValue || defValue === <span class="hljs-number">0</span>) &#123;<br>          <span class="hljs-keyword">this</span>.emit(defValue)<br>        &#125;<br>      &#125;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.multiple) &#123;<br>        <span class="hljs-keyword">this</span>.current = []<br>        defValue.forEach(item =&gt; &#123;<br>          let current = <span class="hljs-keyword">this</span>.filterMixinDatacomResData.find(e =&gt;<br>              e[<span class="hljs-keyword">this</span>.dataValue] == item<br>          )<br>          <span class="hljs-keyword">this</span>.current.push(current)<br>        &#125;)<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">const</span> def = <span class="hljs-keyword">this</span>.mixinDatacomResData.find(item =&gt; item[<span class="hljs-keyword">this</span>.dataValue] === defValue)<br>        <span class="hljs-keyword">this</span>.current = def ? <span class="hljs-keyword">this</span>.formatItemName(def) : <span class="hljs-string">&#x27;&#x27;</span><br>      &#125;<br>    &#125;,<br><br>    <span class="hljs-comment">/**</span><br><span class="hljs-comment">     * <span class="hljs-doctag">@param</span> &#123;[String, Number]&#125; value</span><br><span class="hljs-comment">     * 判断用户给的 value 是否同时为禁用状态</span><br><span class="hljs-comment">     */</span><br>    isDisabled(value) &#123;<br>      let isDisabled = <span class="hljs-literal">false</span>;<br><br>      <span class="hljs-keyword">this</span>.mixinDatacomResData.forEach(item =&gt; &#123;<br>        <span class="hljs-keyword">if</span> (item[<span class="hljs-keyword">this</span>.dataValue] === value) &#123;<br>          isDisabled = item.disable<br>        &#125;<br>      &#125;)<br><br>      <span class="hljs-keyword">return</span> isDisabled;<br>    &#125;,<br><br>    clearVal() &#123;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.multiple) &#123;<br>        <span class="hljs-keyword">this</span>.current = []<br>        <span class="hljs-keyword">this</span>.currentArr = []<br>        <span class="hljs-keyword">this</span>.emit([])<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">this</span>.current = <span class="hljs-string">&quot;&quot;</span><br>        <span class="hljs-keyword">this</span>.currentArr = []<br>        <span class="hljs-keyword">this</span>.emit(<span class="hljs-string">&#x27;&#x27;</span>)<br>      &#125;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.collection) &#123;<br>        <span class="hljs-keyword">this</span>.removeCache()<br>      &#125;<br>      <span class="hljs-keyword">this</span>.placeholderOld = <span class="hljs-keyword">this</span>.placeholder<br>    &#125;,<br>    change(item) &#123;<br>      <span class="hljs-keyword">if</span> (!item.disable) &#123;<br><br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.multiple) &#123;<br>          <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.current) &#123;<br>            <span class="hljs-keyword">this</span>.current = []<br>          &#125;<br>          <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">this</span>.currentArr) &#123;<br>            <span class="hljs-keyword">this</span>.currentArr = []<br>          &#125;<br>          <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.currentArr.includes(item[<span class="hljs-keyword">this</span>.dataValue])) &#123;<br>            let index = <span class="hljs-keyword">this</span>.current.findIndex(e =&gt; &#123;<br>              <span class="hljs-keyword">return</span> e[<span class="hljs-keyword">this</span>.dataValue] == item[<span class="hljs-keyword">this</span>.dataValue]<br>            &#125;)<br><br>            <span class="hljs-keyword">this</span>.current.splice(index, <span class="hljs-number">1</span>)<br>            <span class="hljs-keyword">this</span>.currentArr.splice(index, <span class="hljs-number">1</span>)<br>            <span class="hljs-keyword">this</span>.emit(<span class="hljs-keyword">this</span>.current)<br>          &#125; <span class="hljs-keyword">else</span> &#123;<br><br>            <span class="hljs-keyword">this</span>.current.push(item)<br>            <span class="hljs-keyword">this</span>.currentArr.push(item[<span class="hljs-keyword">this</span>.dataValue])<br>            <span class="hljs-keyword">this</span>.emit(<span class="hljs-keyword">this</span>.current)<br>          &#125;<br>        &#125; <span class="hljs-keyword">else</span> &#123;<br>          <span class="hljs-keyword">this</span>.showSelector = <span class="hljs-literal">false</span><br>          <span class="hljs-keyword">this</span>.current = <span class="hljs-keyword">this</span>.formatItemName(item)<br>          <span class="hljs-keyword">this</span>.emit(item[<span class="hljs-keyword">this</span>.dataValue])<br>        &#125;<br>      &#125;<br>    &#125;,<br>    delItem(item) &#123;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.currentArr.includes(item[<span class="hljs-keyword">this</span>.dataValue])) &#123;<br>        let index = <span class="hljs-keyword">this</span>.current.findIndex(e =&gt; &#123;<br>          <span class="hljs-keyword">return</span> e[<span class="hljs-keyword">this</span>.dataValue] == item[<span class="hljs-keyword">this</span>.dataValue]<br>        &#125;)<br>        <span class="hljs-keyword">this</span>.current.splice(index, <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">this</span>.currentArr.splice(index, <span class="hljs-number">1</span>)<br>        <span class="hljs-keyword">this</span>.emit(<span class="hljs-keyword">this</span>.current)<br>      &#125;<br>    &#125;,<br>    emit(<span class="hljs-keyword">val</span>) &#123;<br>      <span class="hljs-keyword">this</span>.$emit(<span class="hljs-string">&#x27;change&#x27;</span>, <span class="hljs-keyword">val</span>)<br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.multiple) &#123;<br>        <span class="hljs-keyword">this</span>.$emit(<span class="hljs-string">&#x27;input&#x27;</span>, <span class="hljs-keyword">this</span>.currentArr)<br>        <span class="hljs-keyword">this</span>.$emit(<span class="hljs-string">&#x27;update:modelValue&#x27;</span>, <span class="hljs-keyword">this</span>.currentArr)<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">this</span>.$emit(<span class="hljs-string">&#x27;input&#x27;</span>, <span class="hljs-keyword">val</span>)<br>        <span class="hljs-keyword">this</span>.$emit(<span class="hljs-string">&#x27;update:modelValue&#x27;</span>, <span class="hljs-keyword">val</span>)<br>      &#125;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.collection) &#123;<br>        <span class="hljs-keyword">this</span>.setCache(<span class="hljs-keyword">val</span>);<br>      &#125;<br>    &#125;,<br>    toggleSelector() &#123;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.disabled) &#123;<br>        <span class="hljs-keyword">return</span><br>      &#125;<br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.filterable &amp;&amp; <span class="hljs-keyword">this</span>.current &amp;&amp; <span class="hljs-keyword">this</span>.mixinDatacomResData.findIndex(e =&gt; &#123;<br>        <span class="hljs-keyword">return</span> e[<span class="hljs-keyword">this</span>.dataKey] == <span class="hljs-keyword">this</span><br>            .current<br>      &#125;) &lt; <span class="hljs-number">0</span>) &#123;<br>        <span class="hljs-keyword">this</span>.current = <span class="hljs-string">&quot;&quot;</span><br>      &#125;<br>      <span class="hljs-keyword">this</span>.showSelector = !<span class="hljs-keyword">this</span>.showSelector<br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.filterable &amp;&amp; <span class="hljs-keyword">this</span>.current &amp;&amp; <span class="hljs-keyword">this</span>.showSelector) &#123;<br>        <span class="hljs-keyword">this</span>.placeholderOld = <span class="hljs-keyword">this</span>.current<br>        <span class="hljs-keyword">this</span>.current = <span class="hljs-string">&quot;&quot;</span><br>      &#125; <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.filterable &amp;&amp; !<span class="hljs-keyword">this</span>.current &amp;&amp; !<span class="hljs-keyword">this</span>.showSelector) &#123;<br>        <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.placeholderOld != <span class="hljs-keyword">this</span>.placeholder) &#123;<br>          <span class="hljs-keyword">this</span>.current = <span class="hljs-keyword">this</span>.placeholderOld<br>        &#125;<br>      &#125;<br><br>    &#125;,<br>    formatItemName(item) &#123;<br>      <span class="hljs-keyword">if</span> (!item) &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&quot;</span><br>      &#125;<br>      let text = item[<span class="hljs-keyword">this</span>.dataKey]<br>      let value = item[<span class="hljs-keyword">this</span>.dataValue]<br>      let &#123;<br>        channel_code<br>      &#125; = item<br>      channel_code = channel_code ? `($&#123;channel_code&#125;)` : <span class="hljs-string">&#x27;&#x27;</span><br>      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">this</span>.format) &#123;<br>        <span class="hljs-comment">// 格式化输出</span><br>        let str = <span class="hljs-string">&quot;&quot;</span>;<br>        str = <span class="hljs-keyword">this</span>.format;<br>        <span class="hljs-keyword">for</span> (let key <span class="hljs-keyword">in</span> item) &#123;<br>          str = str.replace(new RegExp(`&#123;$&#123;key&#125;&#125;`, <span class="hljs-string">&quot;g&quot;</span>), item[key]);<br>        &#125;<br>        <span class="hljs-keyword">return</span> str;<br>      &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.collection.indexOf(<span class="hljs-string">&#x27;app-list&#x27;</span>) &gt; <span class="hljs-number">0</span> ?<br>            `$&#123;text&#125;($&#123;value&#125;)` :<br>            (<br>                text ?<br>                    text :<br>                    `未命名$&#123;channel_code&#125;`<br>            )<br>      &#125;<br>    &#125;,<br>    <span class="hljs-comment">// 获取当前加载的数据</span><br>    getLoadData() &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.mixinDatacomResData;<br>    &#125;,<br>    <span class="hljs-comment">// 获取当前缓存key</span><br>    getCurrentCacheKey() &#123;<br>      <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>.collection;<br>    &#125;,<br>    <span class="hljs-comment">// 获取缓存</span><br>    getCache(name = <span class="hljs-keyword">this</span>.getCurrentCacheKey()) &#123;<br>      let cacheData = uni.getStorageSync(<span class="hljs-keyword">this</span>.cacheKey) || &#123;&#125;;<br>      <span class="hljs-keyword">return</span> cacheData[name];<br>    &#125;,<br>    <span class="hljs-comment">// 设置缓存</span><br>    setCache(value, name = <span class="hljs-keyword">this</span>.getCurrentCacheKey()) &#123;<br>      let cacheData = uni.getStorageSync(<span class="hljs-keyword">this</span>.cacheKey) || &#123;&#125;;<br>      cacheData[name] = value;<br>      uni.setStorageSync(<span class="hljs-keyword">this</span>.cacheKey, cacheData);<br>    &#125;,<br>    <span class="hljs-comment">// 删除缓存</span><br>    removeCache(name = <span class="hljs-keyword">this</span>.getCurrentCacheKey()) &#123;<br>      let cacheData = uni.getStorageSync(<span class="hljs-keyword">this</span>.cacheKey) || &#123;&#125;;<br>      delete cacheData[name];<br>      uni.setStorageSync(<span class="hljs-keyword">this</span>.cacheKey, cacheData);<br>    &#125;,<br>  &#125;<br>&#125;<br>&lt;/script&gt;<br><br>&lt;style lang=<span class="hljs-string">&quot;scss&quot;</span>&gt;<br>$uni-base-color: #6a6a6a !default;<br>$uni-main-color: #<span class="hljs-number">333</span> !default;<br>$uni-secondary-color: #<span class="hljs-number">909399</span> !default;<br>$uni-border-<span class="hljs-number">3</span>: #e5e5e5;<br><br><br><span class="hljs-comment">/* #ifndef APP-NVUE */</span><br><span class="hljs-meta">@media</span> screen and (max-width: 500px) &#123;<br>  .hide-on-phone &#123;<br>    display: none;<br>  &#125;<br>&#125;<br><br><span class="hljs-comment">/* #endif */</span><br>.uni-stat__select &#123;<br>  display: flex;<br>  align-items: center;<br>  <span class="hljs-comment">// padding: 15px;</span><br>  cursor: pointer;<br>  width: <span class="hljs-number">100</span>%;<br>  flex: <span class="hljs-number">1</span>;<br>  box-sizing: border-box;<br>&#125;<br><br>.uni-stat-box &#123;<br>  width: <span class="hljs-number">100</span>%;<br>  flex: <span class="hljs-number">1</span>;<br>&#125;<br><br>.uni-stat__actived &#123;<br>  width: <span class="hljs-number">100</span>%;<br>  flex: <span class="hljs-number">1</span>;<br>  <span class="hljs-comment">// outline: 1px solid #2979ff;</span><br>&#125;<br><br>.uni-label-text &#123;<br>  font-size: 14px;<br>  font-weight: bold;<br>  color: $uni-base-color;<br>  margin: auto <span class="hljs-number">0</span>;<br>  margin-right: 5px;<br>&#125;<br><br>.uni-select &#123;<br>  font-size: 14px;<br>  border: 1px solid $uni-border-<span class="hljs-number">3</span>;<br>  box-sizing: border-box;<br>  border-radius: 4px;<br>  padding: <span class="hljs-number">0</span> 5px;<br>  padding-left: 10px;<br>  position: relative;<br>  <span class="hljs-comment">/* #ifndef APP-NVUE */</span><br>  display: flex;<br>  user-select: none;<br>  <span class="hljs-comment">/* #endif */</span><br>  flex-direction: row;<br>  align-items: center;<br>  border-bottom: solid 1px $uni-border-<span class="hljs-number">3</span>;<br>  width: <span class="hljs-number">100</span>%;<br>  flex: <span class="hljs-number">1</span>;<br>  height: 35px;<br>  min-height: 35px;<br><br>  &amp;--disabled &#123;<br>    background-color: #f5f7fa;<br>    cursor: not-allowed;<br>  &#125;<br>&#125;<br><br>.uni-select__label &#123;<br>  font-size: 16px;<br>  <span class="hljs-comment">// line-height: 22px;</span><br>  min-height: 35px;<br>  height: 35px;<br>  padding-right: 10px;<br>  color: $uni-secondary-color;<br>&#125;<br><br><br>.uni-select__input-box &#123;<br>  height: 35px;<br>  position: relative;<br>  <span class="hljs-comment">/* #ifndef APP-NVUE */</span><br>  display: flex;<br>  <span class="hljs-comment">/* #endif */</span><br>  flex: <span class="hljs-number">1</span>;<br>  flex-direction: row;<br>  align-items: center;<br><br>  .tag-calss &#123;<br>    font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;<br>    font-weight: <span class="hljs-number">400</span>;<br>    -webkit-font-smoothing: antialiased;<br>    -webkit-tap-highlight-color: transparent;<br>    font-size: 12px;<br>    border: 1px solid #d9ecff;<br>    border-radius: 4px;<br>    white-space: nowrap;<br>    height: 24px;<br>    padding: <span class="hljs-number">0</span> 4px 0px 8px;<br>    line-height: 22px;<br>    box-sizing: border-box;<br>    margin: 2px <span class="hljs-number">0</span> 2px 6px;<br>    display: flex;<br>    max-width: <span class="hljs-number">100</span>%;<br>    align-items: center;<br>    background-color: #f4f4f5;<br>    border-color: #e9e9eb;<br>    color: #<span class="hljs-number">909399</span>;<br>    .text &#123;<br>      font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;<br>      font-weight: <span class="hljs-number">400</span>;<br>      -webkit-font-smoothing: antialiased;<br>      -webkit-tap-highlight-color: transparent;<br>      font-size: torpx(<span class="hljs-number">20</span>);<br>      white-space: nowrap;<br>      line-height: 22px;<br>      color: #<span class="hljs-number">909399</span>;<br>      overflow: hidden;<br>      text-overflow: ellipsis;<br>    &#125;<br>  &#125;<br>&#125;<br><br>.uni-select__input &#123;<br>  flex: <span class="hljs-number">1</span>;<br>  font-size: 14px;<br>  height: 22px;<br>  line-height: 22px;<br>&#125;<br><br>.uni-select__input-plac &#123;<br>  font-size: 14px;<br>  color: $uni-secondary-color;<br>&#125;<br><br>.uni-select__selector &#123;<br>  <span class="hljs-comment">/* #ifndef APP-NVUE */</span><br>  box-sizing: border-box;<br>  <span class="hljs-comment">/* #endif */</span><br>  position: absolute;<br>  top: calc(<span class="hljs-number">100</span>% + 12px);<br>  left: <span class="hljs-number">0</span>;<br>  width: <span class="hljs-number">100</span>%;<br>  background-color: #FFFFFF;<br>  border: 1px solid #EBEEF5;<br>  border-radius: 6px;<br>  box-shadow: <span class="hljs-number">0</span> 2px 12px <span class="hljs-number">0</span> rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.1</span>);<br>  z-index: <span class="hljs-number">3</span>;<br>  padding: 4px <span class="hljs-number">0</span>;<br>&#125;<br><br>.uni-select__selector-scroll &#123;<br>  <span class="hljs-comment">/* #ifndef APP-NVUE */</span><br>  max-height: 200px;<br>  box-sizing: border-box;<br>  <span class="hljs-comment">/* #endif */</span><br>&#125;<br><br>.uni-select__selector-empty,<br>.uni-select__selector-item &#123;<br>  <span class="hljs-comment">/* #ifndef APP-NVUE */</span><br>  display: flex;<br>  cursor: pointer;<br>  <span class="hljs-comment">/* #endif */</span><br>  line-height: 35px;<br>  font-size: 14px;<br>  text-align: center;<br>  <span class="hljs-comment">/* border-bottom: solid 1px $uni-border-3; */</span><br>  padding: 0px 10px;<br>&#125;<br><br>.uni-select__selector-item:hover &#123;<br>  background-color: #f9f9f9;<br>&#125;<br><br>.uni-select__selector-empty:last-child,<br>.uni-select__selector-item:last-child &#123;<br>  <span class="hljs-comment">/* #ifndef APP-NVUE */</span><br>  border-bottom: none;<br>  <span class="hljs-comment">/* #endif */</span><br>&#125;<br><br>.uni-select__selector__disabled &#123;<br>  opacity: <span class="hljs-number">0.4</span>;<br>  cursor: default;<br>&#125;<br><br><span class="hljs-comment">/* picker 弹出层通用的指示小三角 */</span><br>.uni-popper__arrow,<br>.uni-popper__arrow::after &#123;<br>  position: absolute;<br>  display: block;<br>  width: <span class="hljs-number">0</span>;<br>  height: <span class="hljs-number">0</span>;<br>  border-color: transparent;<br>  border-style: solid;<br>  border-width: 6px;<br>&#125;<br><br>.uni-popper__arrow &#123;<br>  filter: drop-shadow(<span class="hljs-number">0</span> 2px 12px rgba(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0</span>, <span class="hljs-number">0.03</span>));<br>  top: -6px;<br>  left: <span class="hljs-number">10</span>%;<br>  margin-right: 3px;<br>  border-top-width: <span class="hljs-number">0</span>;<br>  border-bottom-color: #EBEEF5;<br>&#125;<br><br>.uni-popper__arrow::after &#123;<br>  content: <span class="hljs-string">&quot; &quot;</span>;<br>  top: 1px;<br>  margin-left: -6px;<br>  border-top-width: <span class="hljs-number">0</span>;<br>  border-bottom-color: #fff;<br>&#125;<br><br>.uni-select__input-text &#123;<br>  <span class="hljs-comment">// width: 280px;</span><br>  width: <span class="hljs-number">100</span>%;<br>  color: $uni-main-color;<br>  white-space: nowrap;<br>  text-overflow: ellipsis;<br>  -o-text-overflow: ellipsis;<br>  overflow: hidden;<br>&#125;<br><br>.uni-select__input-placeholder &#123;<br>  color: $uni-base-color;<br>  font-size: 12px;<br>&#125;<br><br>.uni-select--mask &#123;<br>  position: fixed;<br>  top: <span class="hljs-number">0</span>;<br>  bottom: <span class="hljs-number">0</span>;<br>  right: <span class="hljs-number">0</span>;<br>  left: <span class="hljs-number">0</span>;<br>&#125;<br>&lt;/style&gt;<br></code></pre></td></tr></table></figure>
+
+<h1 id="使用方法"><a href="#使用方法" class="headerlink" title="使用方法"></a>使用方法</h1><figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs awk">&lt;multipleSelect v-model=<span class="hljs-string">&quot;billTypeId&quot;</span> <br>:collapse-tags-num=<span class="hljs-number">2</span>  <span class="hljs-regexp">//</span>标签数最大显示数量，超出则显示+<span class="hljs-number">1</span>（多余的数）<br>collapse-tags  <span class="hljs-regexp">//</span>显示标签<br>multiple dataKey=<span class="hljs-string">&quot;label&quot;</span>  <span class="hljs-regexp">//</span>数据的标题 <br>dataValue=<span class="hljs-string">&quot;value&quot;</span>  <span class="hljs-regexp">//</span>数据的值<br>:localdata=<span class="hljs-string">&quot;billTypeList&quot;</span>  <span class="hljs-regexp">//</span>绑定列表数据  <br>本地数据格式如下<br>[&#123;  label: <span class="hljs-string">&quot;item.dictLabel&quot;</span>,value: <span class="hljs-string">&quot;item.id&quot;</span>&#125;]<br>@change=<span class="hljs-string">&quot;billTypeIdChange&quot;</span> <span class="hljs-regexp">//</span>change方法<br>&gt;&lt;/multipleSelect&gt;<br>                <br>                <br> 正确引入组件             <br>import multipleSelect from <span class="hljs-string">&quot;@/components/multipleSelect.vue&quot;</span>;<br>注册组件<br>  components: &#123;multipleSelect&#125;,<br></code></pre></td></tr></table></figure>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/uniapp/">#uniapp</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>下拉多选组件</div>
+      <div>https://yuhang111881.github.io/yuhang111881.github.io/2024/01/10/多选/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>余航</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年1月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/02/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%A4%A7%E5%85%A8/" title="正则表达式大全">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">正则表达式大全</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/01/10/web/" title="Web开发笔记">
+                        <span class="hidden-mobile">Web开发笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"nhXbnKP9RtSWeaAmdl7GrfR3-gzGzoHsz","appKey":"LvVJ0ioNdd5SolRwr1lwJjRl","path":"window.location.pathname","placeholder":null,"avatar":"hide","meta":["nick","mail"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"highlight":"ture","enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>余航</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Future</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
