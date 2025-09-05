@@ -25,7 +25,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://yuhang111881.github.io/img/3.png">
 <meta property="article:published_time" content="2023-02-25T10:44:37.000Z">
-<meta property="article:modified_time" content="2025-09-04T07:32:23.418Z">
+<meta property="article:modified_time" content="2025-09-04T07:51:57.686Z">
 <meta property="article:author" content="余航">
 <meta property="article:tag" content="vue">
 <meta name="twitter:card" content="summary_large_image">
@@ -228,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          23k 字
+          24k 字
         
       </span>
     
@@ -239,7 +239,7 @@
         
         
         
-          193 分钟
+          200 分钟
         
       </span>
     
@@ -622,6 +622,10 @@ computed: &#123;
 <p>通过创建一个响应式数据，字段名为number给定初始值为Number类型</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript"><span class="hljs-keyword">const</span> number =<span class="hljs-built_in">ref</span>(<span class="hljs-number">11</span>)<br></code></pre></td></tr></table></figure>
 
+<h1 id="vue-中-computed的使用"><a href="#vue-中-computed的使用" class="headerlink" title="vue 中 computed的使用"></a>vue 中 computed的使用</h1><p>利用计算函数判断某个值的变化如下代码所示，为某个元素根据传参类别不同动态赋值</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs arcade"> &lt;file-<span class="hljs-built_in">attachments</span><br>   ref=<span class="hljs-string">&quot;fileUpload&quot;</span><br>   :mode=<span class="hljs-string">&quot;mode&quot;</span><br>   :formData=<span class="hljs-string">&quot;formData&quot;</span><br>   :privateFileSchemas=<span class="hljs-string">&quot;_schemas&quot;</span><br> &gt;&lt;/file-<span class="hljs-built_in">attachments</span>&gt;<br>const _schemas = computed(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> &#123;<br><span class="hljs-keyword">return</span> props.rowDatas?.businessType==<span class="hljs-string">&#x27;4&#x27;</span> ? continuationSchemas : schemas;<br>&#125;);<br></code></pre></td></tr></table></figure>
+<p>或者利用其为一个注册函数动态赋值</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs php">auditRegister在页面初始化时候注册，此时要想跟据其他值变化而动态变化schemas 是不可行的，此时我们即可利用计算函数完成<br><span class="hljs-keyword">const</span> [<br>auditRegister,<br>&#123;<br>setFieldsValue: setAuditFieldsValue,<br>validate: auditValidate,<br>getFieldsValue: getAuditfieldsValue,<br>&#125;,<br>] = <span class="hljs-title function_ invoke__">useForm</span>(&#123;<br><span class="hljs-attr">gridProps</span>: &#123; <span class="hljs-attr">cols</span>: <span class="hljs-string">&#x27;4&#x27;</span>, <span class="hljs-attr">xGap</span>: <span class="hljs-number">40</span>, <span class="hljs-attr">collapsedRows</span>: <span class="hljs-number">20</span> &#125;,<br><span class="hljs-attr">showAdvancedButton</span>: <span class="hljs-literal">false</span>,<br><span class="hljs-attr">schemas</span>: _schemas,<br>&#125;);<br>如下所示<br>  <span class="hljs-keyword">const</span> <span class="hljs-variable constant_">_schemas</span> = <span class="hljs-title function_ invoke__">computed</span>(() =&gt; &#123;<br>    <span class="hljs-keyword">return</span> resStatus.value==<span class="hljs-string">&#x27;review_pass&#x27;</span> ? auditSchemas : auditSchemas2;<br>  &#125;);<br>  通过 resStatus.value==<span class="hljs-string">&#x27;review_pass&#x27;</span>的判断，动态更新 scheams 值<br></code></pre></td></tr></table></figure>
 
                 
               </div>
