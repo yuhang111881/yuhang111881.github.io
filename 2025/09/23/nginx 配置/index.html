@@ -19,12 +19,12 @@
     <meta name="description" content="1、安装mac系统利用brew 包管理工具安装 1brew install nginx  安装完成后使用命令查看版本号 1234nginx -v&#x2F;&#x2F;终端配置yuhang@yuhangdeMacBook-Pro ~ % nginx -v     nginx version: nginx&#x2F;1.25.4  利用命令查看nginx 的安装目录 12345678nginx -Vnginx version:">
 <meta property="og:type" content="article">
 <meta property="og:title" content="nginx从安装到基础配置">
-<meta property="og:url" content="https://yuhang111881.github.io/yuhang111881.github.io/2024/04/17/nginx%20%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:url" content="https://yuhang111881.github.io/yuhang111881.github.io/2025/09/23/nginx%20%E9%85%8D%E7%BD%AE/index.html">
 <meta property="og:site_name" content="余航的博客">
 <meta property="og:description" content="1、安装mac系统利用brew 包管理工具安装 1brew install nginx  安装完成后使用命令查看版本号 1234nginx -v&#x2F;&#x2F;终端配置yuhang@yuhangdeMacBook-Pro ~ % nginx -v     nginx version: nginx&#x2F;1.25.4  利用命令查看nginx 的安装目录 12345678nginx -Vnginx version:">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-17T08:35:57.000Z">
-<meta property="article:modified_time" content="2024-04-17T08:35:57.000Z">
+<meta property="article:published_time" content="2025-09-23T09:42:24.403Z">
+<meta property="article:modified_time" content="2025-09-23T09:42:24.403Z">
 <meta property="article:author" content="余航">
 <meta property="article:tag" content="余航个人博客">
 <meta name="twitter:card" content="summary_large_image">
@@ -214,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-17 16:35" pubdate>
-          2024年4月17日 下午
+        <time datetime="2025-09-23 17:42" pubdate>
+          2025年9月23日 下午
         </time>
       </span>
     
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          6k 字
+          8k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          51 分钟
+          67 分钟
         
       </span>
     
@@ -346,6 +346,7 @@ server &#123;
 
 <figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs awk">server &#123;<br>    listen       <span class="hljs-number">8080</span>;<br>    server_name  localhost;<br>return <span class="hljs-number">301</span> https:<span class="hljs-variable">$server_name</span><span class="hljs-variable">$request_uri</span>;<br>    <span class="hljs-comment">#charset koi8-r;</span><br>    <span class="hljs-comment">#access_log  logs/host.access.log  main;</span><br>    location / &#123;   匹配根目录内容<br>        root   html;<br>        index  index.html index.htm;<br>		try_files <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span><span class="hljs-regexp">/ /i</span>ndex.html =<span class="hljs-number">404</span>;<br>		proxy_pass https:<span class="hljs-regexp">//</span>teas.peri-nas.top;<br>    &#125;<br></code></pre></td></tr></table></figure>
 
+<h1 id="5、一个域名下同时打开多个网站-参考"><a href="#5、一个域名下同时打开多个网站-参考" class="headerlink" title="5、一个域名下同时打开多个网站 参考"></a>5、一个域名下同时打开多个网站 参考</h1><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-section">server</span><br>&#123;<br><span class="hljs-attribute">listen</span> <span class="hljs-number">80</span>;<br><span class="hljs-attribute">server_name</span> <span class="hljs-number">192.168.13.1</span>;<br><span class="hljs-attribute">index</span> index.html index.htm default.htm default.html;<br><span class="hljs-attribute">root</span> /www/wwwroot/html;<br><span class="hljs-comment">#在配置中加上try_files，意思跟翻译差不多，“尝试读取文件”。</span><br><br><span class="hljs-attribute">try_files</span> <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ /index.html =<span class="hljs-number">404</span>;<br><span class="hljs-comment">#CERT-APPLY-CHECK--START</span><br><span class="hljs-comment"># 用于SSL证书申请时的文件验证相关配置 -- 请勿删除并保持这段设置在优先级高的位置</span><br><span class="hljs-attribute">include</span> /www/server/panel/vhost/nginx/well-known/<span class="hljs-number">192.168.3.157</span>.conf;<br><span class="hljs-comment">#CERT-APPLY-CHECK--END</span><br><br>    <span class="hljs-comment">#SSL-START SSL相关配置，请勿删除或修改下一行带注释的404规则</span><br>    <span class="hljs-comment">#error_page 404/404.html;</span><br>    <span class="hljs-comment">#SSL-END</span><br><br>    <span class="hljs-comment">#ERROR-PAGE-START  错误页配置，可以注释、删除或修改</span><br>    <span class="hljs-comment">#error_page 404 /404.html;</span><br>    <span class="hljs-comment">#error_page 502 /502.html;</span><br>    <span class="hljs-comment">#ERROR-PAGE-END</span><br><br>    <span class="hljs-comment">#REWRITE-START URL重写规则引用,修改后将导致面板设置的伪静态规则失效</span><br>    <span class="hljs-attribute">include</span> /www/server/panel/vhost/rewrite/html_192.<span class="hljs-number">168</span>.<span class="hljs-number">3</span>.<span class="hljs-number">157</span>.conf;<br>    <span class="hljs-comment">#REWRITE-END</span><br><span class="hljs-section">location</span> = / &#123;<br><span class="hljs-attribute">return</span> <span class="hljs-number">302</span> /mohurd-web-bt/;  <span class="hljs-comment"># 可跳转到子路径</span><br>&#125;<br><br>    <span class="hljs-comment"># 处理无斜杠的路径</span><br>    <span class="hljs-section">location</span> = /mohurd-web-bt &#123;<br>        <span class="hljs-attribute">return</span> <span class="hljs-number">301</span> /mohurd-web-bt/;<br>    &#125;<br>     <br>    <br>    <span class="hljs-comment"># 子路径配置</span><br>    <span class="hljs-section">location</span> /mohurd-web-bt/ &#123;<br>        <span class="hljs-attribute">alias</span> /www/wwwroot/html/mohurd-web-bt/;<br>        <span class="hljs-attribute">index</span> index.html;<br>        <br>        <span class="hljs-comment"># History模式支持</span><br>        <span class="hljs-attribute">try_files</span> <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ /mohurd-web-bt/index.html;<br>        <br>        <span class="hljs-comment"># 静态资源缓存</span><br>        <span class="hljs-section">location</span> <span class="hljs-regexp">~* \.(js|css|png|ico)$</span> &#123;<br>            <span class="hljs-attribute">expires</span> <span class="hljs-number">1y</span>;<br>            <span class="hljs-attribute">access_log</span> <span class="hljs-literal">off</span>;<br>        &#125;<br>    &#125;<br>      <br>    <span class="hljs-comment"># 子路径配置</span><br>    <span class="hljs-section">location</span> /mohurd-web/ &#123;<br>        <span class="hljs-attribute">alias</span> /www/wwwroot/html/mohurd-web/;<br>        <span class="hljs-attribute">index</span> index.html;<br>        <br>        <span class="hljs-comment"># History模式支持</span><br>        <span class="hljs-attribute">try_files</span> <span class="hljs-variable">$uri</span> <span class="hljs-variable">$uri</span>/ /mohurd-web/index.html;<br>        <br>        <span class="hljs-comment"># 静态资源缓存</span><br>        <span class="hljs-section">location</span> <span class="hljs-regexp">~* \.(js|css|png|ico)$</span> &#123;<br>            <span class="hljs-attribute">expires</span> <span class="hljs-number">1y</span>;<br>            <span class="hljs-attribute">access_log</span> <span class="hljs-literal">off</span>;<br>        &#125;<br>    &#125;<br><br>    <span class="hljs-comment">#禁止访问的文件或目录</span><br>    <span class="hljs-section">location</span> <span class="hljs-regexp">~ ^/(\.user.ini|\.htaccess|\.git|\.env|\.svn|\.project|LICENSE|README.md)</span><br>    &#123;<br>        <span class="hljs-attribute">return</span> <span class="hljs-number">404</span>;<br>    &#125;<br><br>    <span class="hljs-comment">#一键申请SSL证书验证目录相关设置</span><br>    <span class="hljs-section">location</span> <span class="hljs-regexp">~ \.well-known</span>&#123;<br>        <span class="hljs-attribute">allow</span> all;<br>    &#125;<br><br>    <span class="hljs-comment">#禁止在证书验证目录放入敏感文件</span><br>    <span class="hljs-attribute">if</span> ( <span class="hljs-variable">$uri</span> <span class="hljs-regexp">~ &quot;^/\.well-known/.*\.(php|jsp|py|js|css|lua|ts|go|zip|tar\.gz|rar|7z|sql|bak)$&quot;</span> ) &#123;<br>        <span class="hljs-attribute">return</span> <span class="hljs-number">403</span>;<br>    &#125;<br><br>    <span class="hljs-section">location</span> <span class="hljs-regexp">~ .*\\.(gif|jpg|jpeg|png|bmp|swf)$</span><br>    &#123;<br>        <span class="hljs-attribute">expires</span>      <span class="hljs-number">30d</span>;<br>        <span class="hljs-attribute">error_log</span> /dev/null;<br>        <span class="hljs-attribute">access_log</span> /dev/null;<br>    &#125;<br><br>    <span class="hljs-section">location</span> <span class="hljs-regexp">~ .*\\.(js|css)?$</span><br>    &#123;<br>        <span class="hljs-attribute">expires</span>      <span class="hljs-number">12h</span>;<br>        <span class="hljs-attribute">error_log</span> /dev/null;<br>        <span class="hljs-attribute">access_log</span> /dev/null;<br>    &#125;<br>    <span class="hljs-attribute">access_log</span>  /www/wwwlogs/<span class="hljs-number">192.168.3.157</span>.log;<br>    <span class="hljs-attribute">error_log</span>  /www/wwwlogs/<span class="hljs-number">192.168.3.157</span>.<span class="hljs-literal">error</span>.log;<br>&#125;<br></code></pre></td></tr></table></figure>
 
                 
               </div>
@@ -385,7 +386,7 @@ server &#123;
   <div class="license-box my-3">
     <div class="license-title">
       <div>nginx从安装到基础配置</div>
-      <div>https://yuhang111881.github.io/yuhang111881.github.io/2024/04/17/nginx 配置/</div>
+      <div>https://yuhang111881.github.io/yuhang111881.github.io/2025/09/23/nginx 配置/</div>
     </div>
     <div class="license-meta">
       
@@ -397,7 +398,7 @@ server &#123;
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年4月17日</div>
+          <div>2025年9月23日</div>
         </div>
       
       
@@ -429,18 +430,12 @@ server &#123;
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/04/24/%E8%8B%B9%E6%9E%9C%E7%94%B5%E8%84%91%E5%B1%8F%E8%94%BD%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C/" title="苹果电脑屏蔽系统升级操作">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">苹果电脑屏蔽系统升级操作</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/04/16/Smb%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/" title="SMB服务器配置">
-                        <span class="hidden-mobile">SMB服务器配置</span>
+                      <a href="/2025/07/26/Untitled/" title="">
+                        <span class="hidden-mobile"></span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

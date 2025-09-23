@@ -16,15 +16,15 @@
   <meta name="author" content="余航">
   <meta name="keywords" content="余航个人博客">
   
-    <meta name="description" content="实例：公司有多个部门，因工作需要，必须分门别类的建立相应部门的目录。要求将销售部的资料存放在samba服务器的&#x2F;companydata&#x2F;sales 目录下集中管理，以便销售人员浏览，并且该目录只允许销售部门员工访问 1、在服务器上安装samba功能rpm -qa |grep samba &#x2F;&#x2F;可以使用此命令检测是否安装此功能 yum clean all   &amp;">
+    <meta name="description" content=".├── build # 打包脚本相关│   ├── config # 配置文件│   ├── generate # 生成器│   ├── script # 脚本│   └── vite # vite配置├── mock # mock文件夹├── public # 公共静态资源目录├── src # 主目录│   ├── api # 接口文件│   ├── assets # 资源文件│   │">
 <meta property="og:type" content="article">
-<meta property="og:title" content="SMB服务器配置">
-<meta property="og:url" content="https://yuhang111881.github.io/yuhang111881.github.io/2024/04/16/Smb%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:title" content="余航的博客">
+<meta property="og:url" content="https://yuhang111881.github.io/yuhang111881.github.io/2025/07/26/Untitled/index.html">
 <meta property="og:site_name" content="余航的博客">
-<meta property="og:description" content="实例：公司有多个部门，因工作需要，必须分门别类的建立相应部门的目录。要求将销售部的资料存放在samba服务器的&#x2F;companydata&#x2F;sales 目录下集中管理，以便销售人员浏览，并且该目录只允许销售部门员工访问 1、在服务器上安装samba功能rpm -qa |grep samba &#x2F;&#x2F;可以使用此命令检测是否安装此功能 yum clean all   &amp;">
+<meta property="og:description" content=".├── build # 打包脚本相关│   ├── config # 配置文件│   ├── generate # 生成器│   ├── script # 脚本│   └── vite # vite配置├── mock # mock文件夹├── public # 公共静态资源目录├── src # 主目录│   ├── api # 接口文件│   ├── assets # 资源文件│   │">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-04-16T01:55:48.000Z">
-<meta property="article:modified_time" content="2024-04-16T01:55:48.000Z">
+<meta property="article:published_time" content="2025-07-26T01:27:58.000Z">
+<meta property="article:modified_time" content="2025-03-27T09:42:29.000Z">
 <meta property="article:author" content="余航">
 <meta property="article:tag" content="余航个人博客">
 <meta name="twitter:card" content="summary_large_image">
@@ -33,7 +33,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>SMB服务器配置 - 余航的博客</title>
+  <title>余航的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="SMB服务器配置"></span>
+            <span id="subtitle" data-typed-text=""></span>
           
         </div>
 
@@ -214,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-04-16 09:55" pubdate>
-          2024年4月16日 上午
+        <time datetime="2025-07-26 09:27" pubdate>
+          2025年7月26日 上午
         </time>
       </span>
     
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.3k 字
+          810 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          11 分钟
+          7 分钟
         
       </span>
     
@@ -275,50 +275,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">SMB服务器配置</h1>
+            <h1 style="display: none"></h1>
             
             
               <div class="markdown-body">
                 
-                <p>实例：公司有多个部门，因工作需要，必须分门别类的建立相应部门的目录。要求将销售部的资料存放在samba服务器的&#x2F;companydata&#x2F;sales 目录下集中管理，以便销售人员浏览，并且该目录只允许销售部门员工访问</p>
-<h2 id="1、在服务器上安装samba功能"><a href="#1、在服务器上安装samba功能" class="headerlink" title="1、在服务器上安装samba功能"></a>1、在服务器上安装samba功能</h2><p>rpm -qa |grep samba &#x2F;&#x2F;可以使用此命令检测是否安装此功能</p>
-<p>yum clean all   &#x2F;&#x2F;在安装前清理缓存文件</p>
-<p>yum install samba -y &#x2F;&#x2F;使用yum 方式安装samba功能</p>
-<p>安装完成后，启动服务</p>
-<p>systemctl start smb &#x2F;&#x2F;开启smb服务</p>
-<p>systemctl enable smb &#x2F;&#x2F;设置开启自启</p>
-<h3 id="2、新建共享目录"><a href="#2、新建共享目录" class="headerlink" title="2、新建共享目录"></a>2、新建共享目录</h3><p>mkdir &#x2F;companydata</p>
-<p>midir  &#x2F;companydata&#x2F;sales</p>
-<h3 id="3、创建销售部用户和组并添加相应的samba账号"><a href="#3、创建销售部用户和组并添加相应的samba账号" class="headerlink" title="3、创建销售部用户和组并添加相应的samba账号"></a>3、创建销售部用户和组并添加相应的samba账号</h3><p>groupadd sales</p>
-<p>useradd -g sales sale1</p>
-<p>useradd -g sales sale2</p>
-<p>passwd sale1</p>
-<p>psswd sale2</p>
-<p>为销售部成员添加samba 账号</p>
-<p>smbpasswd - a sale1</p>
-<p>smbpasswd - a sale2</p>
-<h2 id="4、修改samba配置文件"><a href="#4、修改samba配置文件" class="headerlink" title="4、修改samba配置文件"></a>4、修改samba配置文件</h2><p>[sales]						&#x2F;&#x2F;共享名</p>
-<p>​	comment&#x3D;sales </p>
-<p>​	path&#x3D; &#x2F;companydata&#x2F;sales</p>
-<p>​	writable&#x3D;yes     &#x2F;&#x2F;目录可读写</p>
-<p>​	browseable&#x3D;yes &#x2F;&#x2F;目录可浏览</p>
-<p>​	valid users&#x3D;@sales     &#x2F;&#x2F;设置可访问的用户组</p>
-<h2 id="5、设置共享目录的本地权限"><a href="#5、设置共享目录的本地权限" class="headerlink" title="5、设置共享目录的本地权限"></a>5、设置共享目录的本地权限</h2><p>chmod 777 &#x2F;companydata&#x2F;sales -R</p>
-<p>chown sale1：sales &#x2F;conpanydata&#x2F;sales -R</p>
-<p>chown sale2：sales &#x2F;conpanydata&#x2F;sales -R</p>
-<p>6、更改共享目录的context值或者禁用SELinux</p>
-<p>chcon -t samba_share_t &#x2F;companydata&#x2F;sales -R</p>
-<p>或者</p>
-<p>geteforce</p>
-<p>setenforce Permissive</p>
-<h2 id="6、放行防火墙服务"><a href="#6、放行防火墙服务" class="headerlink" title="6、放行防火墙服务"></a>6、放行防火墙服务</h2><p>systemctl start firewalld</p>
-<p>firewall-cmd –permanent –add-service&#x3D;samba</p>
-<p>firewall-cmd –reload   &#x2F;&#x2F;重新加载防火墙</p>
-<p>firewall-cmd –list-all   &#x2F;&#x2F;查看已经加入防火墙的服务</p>
-<h2 id="7、重新加载Samba服务"><a href="#7、重新加载Samba服务" class="headerlink" title="7、重新加载Samba服务"></a>7、重新加载Samba服务</h2><p>systemctl restart smb  重新启动Samba服务</p>
-<p>即可在Windows访问</p>
-<p>开始–运行–\IP地址+sales</p>
-<p>输入刚才所创建的用户名即密码登录访问。</p>
+                <p>.<br>├── build # 打包脚本相关<br>│   ├── config # 配置文件<br>│   ├── generate # 生成器<br>│   ├── script # 脚本<br>│   └── vite # vite配置<br>├── mock # mock文件夹<br>├── public # 公共静态资源目录<br>├── src # 主目录<br>│   ├── api # 接口文件<br>│   ├── assets # 资源文件<br>│   │   ├── icons # icon sprite 图标文件夹<br>│   │   ├── images # 项目存放图片的文件夹<br>│   │   └── svg # 项目存放svg图片的文件夹<br>│   ├── components # 公共组件<br>│   ├── design # 样式文件<br>│   ├── directives # 指令<br>│   ├── enums # 枚举&#x2F;常量<br>│   ├── hooks # hook<br>│   │   ├── component # 组件相关hook<br>│   │   ├── core # 基础hook<br>│   │   ├── event # 事件相关hook<br>│   │   ├── setting # 配置相关hook<br>│   │   └── web # web相关hook<br>│   ├── layouts # 布局文件<br>│   │   ├── default # 默认布局<br>│   │   ├── iframe # iframe布局<br>│   │   └── page # 页面布局<br>│   ├── locales # 多语言<br>│   ├── logics # 逻辑<br>│   ├── main.ts # 主入口<br>│   ├── router # 路由配置<br>│   ├── settings # 项目配置<br>│   │   ├── componentSetting.ts # 组件配置<br>│   │   ├── designSetting.ts # 样式配置<br>│   │   ├── encryptionSetting.ts # 加密配置<br>│   │   ├── localeSetting.ts # 多语言配置<br>│   │   ├── projectSetting.ts # 项目配置<br>│   │   └── siteSetting.ts # 站点配置<br>│   ├── store # 数据仓库<br>│   ├── utils # 工具类<br>│   └── views # 页面<br>├── types # 类型文件<br>├── vite.config.ts # vite配置文件<br>└── windi.config.ts # windcss配置文件</p>
 
                 
               </div>
@@ -326,27 +288,6 @@
             <hr/>
             <div>
               <div class="post-metas my-3">
-  
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/centos-7/" class="category-chain-item">centos 7</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
   
   
 </div>
@@ -357,8 +298,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>SMB服务器配置</div>
-      <div>https://yuhang111881.github.io/yuhang111881.github.io/2024/04/16/Smb服务器配置/</div>
+      <div></div>
+      <div>https://yuhang111881.github.io/yuhang111881.github.io/2025/07/26/Untitled/</div>
     </div>
     <div class="license-meta">
       
@@ -370,7 +311,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年4月16日</div>
+          <div>2025年7月26日</div>
         </div>
       
       
@@ -402,9 +343,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/04/24/%E8%8B%B9%E6%9E%9C%E7%94%B5%E8%84%91%E5%B1%8F%E8%94%BD%E7%B3%BB%E7%BB%9F%E5%8D%87%E7%BA%A7%E6%93%8D%E4%BD%9C/" title="苹果电脑屏蔽系统升级操作">
+                      <a href="/2025/09/23/nginx%20%E9%85%8D%E7%BD%AE/" title="nginx从安装到基础配置">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">苹果电脑屏蔽系统升级操作</span>
+                        <span class="hidden-mobile">nginx从安装到基础配置</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -412,8 +353,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/02/23/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F%E5%A4%A7%E5%85%A8/" title="正则表达式大全">
-                        <span class="hidden-mobile">正则表达式大全</span>
+                      <a href="/2024/09/11/%E5%B8%B8%E8%A7%84%E5%91%BD%E4%BB%A4/" title="redis部署与启动">
+                        <span class="hidden-mobile">redis部署与启动</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

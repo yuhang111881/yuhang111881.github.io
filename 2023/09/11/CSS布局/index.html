@@ -24,7 +24,7 @@
 <meta property="og:description" content="1、CSS布局1.1针对于导航栏针对导航栏我们可以利用position: sticky; 粘性定位进行实现。使页面下滑时候导航栏依旧存在于页面顶部。 1234567891011121314&lt;div class&#x3D;&quot;cebian&quot;&gt;		&lt;div class&#x3D;&quot;cebianButton&quot;&gt;			这里编写导航栏的相关代码		&lt;&#x2F;div&amp;">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-09-11T10:44:37.000Z">
-<meta property="article:modified_time" content="2024-01-10T03:25:12.000Z">
+<meta property="article:modified_time" content="2025-09-23T09:42:24.402Z">
 <meta property="article:author" content="余航">
 <meta property="article:tag" content="CSS布局">
 <meta name="twitter:card" content="summary_large_image">
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          519 字
+          739 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          5 分钟
+          7 分钟
         
       </span>
     
@@ -284,8 +284,9 @@
 <figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs axapta">&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;cebian&quot;</span>&gt;<br>		&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;cebianButton&quot;</span>&gt;<br>			这里编写导航栏的相关代码<br>		&lt;/<span class="hljs-keyword">div</span>&gt;<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br>	<span class="hljs-comment">//此处必须针对外框定义高度宽度值。</span><br>.cebian&#123;<br>	height: <span class="hljs-number">7000</span>px;<br>	width: <span class="hljs-number">100</span>%;<br>&#125;<br>.cebianButton&#123;<br>	position: sticky;<br>	top: <span class="hljs-number">0</span>px;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <h2 id="1-2针对于页面侧边的联系客服栏"><a href="#1-2针对于页面侧边的联系客服栏" class="headerlink" title="1.2针对于页面侧边的联系客服栏"></a>1.2针对于页面侧边的联系客服栏</h2><p>此时我们可以利用position: fixed 此定位方式相对于浏览器窗口，脱离文档流，在页面中不占据位置。</p>
-<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs axapta">&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;cebianButton&quot;</span>&gt;<br>		这里编写导航栏的相关代码<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br>.cebianButton&#123;<br>top:<span class="hljs-number">50</span>%<br>ponsition:fixed;<br>&#125;<br><span class="hljs-comment">//此时定位相对于浏览器窗口。</span><br></code></pre></td></tr></table></figure>
-
+<figure class="highlight axapta"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs axapta">&lt;<span class="hljs-keyword">div</span> <span class="hljs-keyword">class</span>=<span class="hljs-string">&quot;cebianButton&quot;</span>&gt;<br>		这里编写导航栏的相关代码<br>&lt;/<span class="hljs-keyword">div</span>&gt;<br><br>.cebianButton&#123;<br>top:<span class="hljs-number">50</span>%<br>ponsition:fixed;<br>&#125;   <br><span class="hljs-comment">//此时定位相对于浏览器窗口。</span><br></code></pre></td></tr></table></figure>
+<h2 id="1-3页面锚点平滑跳转，适用于-js-ts-方法中"><a href="#1-3页面锚点平滑跳转，适用于-js-ts-方法中" class="headerlink" title="1.3页面锚点平滑跳转，适用于 js ts 方法中"></a>1.3页面锚点平滑跳转，适用于 js ts 方法中</h2><p>此时我们可以利用position: fixed 此定位方式相对于浏览器窗口，脱离文档流，在页面中不占据位置。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk">document.querySelector(<span class="hljs-string">&#x27;#section1&#x27;</span>).scrollIntoView(&#123;<br>behavior: <span class="hljs-string">&#x27;smooth&#x27;</span>, <span class="hljs-regexp">//</span> 平滑滚动<br>block: <span class="hljs-string">&#x27;start&#x27;</span>      <span class="hljs-regexp">//</span> 对齐到视口顶部<br>&#125;);<br><br></code></pre></td></tr></table></figure>
 
                 
               </div>
