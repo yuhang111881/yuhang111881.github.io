@@ -23,19 +23,6 @@
   
   
   <entry>
-    <title></title>
-    <link href="/2025/07/26/Untitled/"/>
-    <url>/2025/07/26/Untitled/</url>
-    
-    <content type="html"><![CDATA[<p>.<br>├── build # 打包脚本相关<br>│   ├── config # 配置文件<br>│   ├── generate # 生成器<br>│   ├── script # 脚本<br>│   └── vite # vite配置<br>├── mock # mock文件夹<br>├── public # 公共静态资源目录<br>├── src # 主目录<br>│   ├── api # 接口文件<br>│   ├── assets # 资源文件<br>│   │   ├── icons # icon sprite 图标文件夹<br>│   │   ├── images # 项目存放图片的文件夹<br>│   │   └── svg # 项目存放svg图片的文件夹<br>│   ├── components # 公共组件<br>│   ├── design # 样式文件<br>│   ├── directives # 指令<br>│   ├── enums # 枚举&#x2F;常量<br>│   ├── hooks # hook<br>│   │   ├── component # 组件相关hook<br>│   │   ├── core # 基础hook<br>│   │   ├── event # 事件相关hook<br>│   │   ├── setting # 配置相关hook<br>│   │   └── web # web相关hook<br>│   ├── layouts # 布局文件<br>│   │   ├── default # 默认布局<br>│   │   ├── iframe # iframe布局<br>│   │   └── page # 页面布局<br>│   ├── locales # 多语言<br>│   ├── logics # 逻辑<br>│   ├── main.ts # 主入口<br>│   ├── router # 路由配置<br>│   ├── settings # 项目配置<br>│   │   ├── componentSetting.ts # 组件配置<br>│   │   ├── designSetting.ts # 样式配置<br>│   │   ├── encryptionSetting.ts # 加密配置<br>│   │   ├── localeSetting.ts # 多语言配置<br>│   │   ├── projectSetting.ts # 项目配置<br>│   │   └── siteSetting.ts # 站点配置<br>│   ├── store # 数据仓库<br>│   ├── utils # 工具类<br>│   └── views # 页面<br>├── types # 类型文件<br>├── vite.config.ts # vite配置文件<br>└── windi.config.ts # windcss配置文件</p>]]></content>
-    
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>redis部署与启动</title>
     <link href="/2024/09/11/%E5%B8%B8%E8%A7%84%E5%91%BD%E4%BB%A4/"/>
     <url>/2024/09/11/%E5%B8%B8%E8%A7%84%E5%91%BD%E4%BB%A4/</url>
