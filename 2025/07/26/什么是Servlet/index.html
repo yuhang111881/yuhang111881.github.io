@@ -16,24 +16,26 @@
   <meta name="author" content="余航">
   <meta name="keywords" content="余航个人博客">
   
-    <meta name="description" content="#一、关于html  简述一下你对 HTML 语义化的理解？用正确的标签做正确的事情。html 语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析；即使在没有样式 CSS 情况下也以一种文档格式显示，并且是容易阅读的;搜索引擎的爬虫也依赖于 HTML 标记来确定上下文和各个关键字的权重，利于 SEO;使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。 标签上 title 与">
+    <meta name="description" content="Servlet生命周期1、加载和实例化：默认情况下，Servlet第一次被访问时，容器来创建Servlet对象 2、初始化：在实例化之后，容器将调用Servlet的init（）方法来初始化这个对象，完成一些如配置文件的加载，创建连接等初始化工作，仅调用一次。 3、请求处理：每次请求Servlet的时候，Servlet容器都会调用Servlet中的Service（）方法对请求进行处理。 4、服务终止">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端面试秘籍">
-<meta property="og:url" content="https://yuhang111881.github.io/yuhang111881.github.io/2024/01/10/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E7%A7%98%E7%B1%8D/index.html">
+<meta property="og:title" content="什么是Servlet">
+<meta property="og:url" content="https://yuhang111881.github.io/yuhang111881.github.io/2025/07/26/%E4%BB%80%E4%B9%88%E6%98%AFServlet/index.html">
 <meta property="og:site_name" content="余航的博客">
-<meta property="og:description" content="#一、关于html  简述一下你对 HTML 语义化的理解？用正确的标签做正确的事情。html 语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析；即使在没有样式 CSS 情况下也以一种文档格式显示，并且是容易阅读的;搜索引擎的爬虫也依赖于 HTML 标记来确定上下文和各个关键字的权重，利于 SEO;使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。 标签上 title 与">
+<meta property="og:description" content="Servlet生命周期1、加载和实例化：默认情况下，Servlet第一次被访问时，容器来创建Servlet对象 2、初始化：在实例化之后，容器将调用Servlet的init（）方法来初始化这个对象，完成一些如配置文件的加载，创建连接等初始化工作，仅调用一次。 3、请求处理：每次请求Servlet的时候，Servlet容器都会调用Servlet中的Service（）方法对请求进行处理。 4、服务终止">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-01-10T03:25:12.000Z">
+<meta property="og:image" content="https://yuhang111881.github.io/img/1.png">
+<meta property="article:published_time" content="2025-07-26T01:27:58.000Z">
 <meta property="article:modified_time" content="2024-01-10T03:25:12.000Z">
 <meta property="article:author" content="余航">
 <meta property="article:tag" content="余航个人博客">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://yuhang111881.github.io/img/1.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>前端面试秘籍 - 余航的博客</title>
+  <title>什么是Servlet - 余航的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +200,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="前端面试秘籍"></span>
+            <span id="subtitle" data-typed-text="什么是Servlet"></span>
           
         </div>
 
@@ -214,8 +216,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-01-10 11:25" pubdate>
-          2024年1月10日 上午
+        <time datetime="2025-07-26 09:27" pubdate>
+          2025年7月26日 上午
         </time>
       </span>
     
@@ -226,7 +228,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.9k 字
+          1.4k 字
         
       </span>
     
@@ -237,7 +239,7 @@
         
         
         
-          16 分钟
+          13 分钟
         
       </span>
     
@@ -275,53 +277,27 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">前端面试秘籍</h1>
+            <h1 style="display: none">什么是Servlet</h1>
             
             
               <div class="markdown-body">
                 
-                <p>#一、关于html</p>
-<ol>
-<li>简述一下你对 HTML 语义化的理解？<br>用正确的标签做正确的事情。<br>html 语义化让页面的内容结构化，结构更清晰，便于对浏览器、搜索引擎解析；即使在没有样式 CSS 情况下也以一种文档格式显示，并且是容易阅读的;<br>搜索引擎的爬虫也依赖于 HTML 标记来确定上下文和各个关键字的权重，利于 SEO;<br>使阅读源代码的人对网站更容易将网站分块，便于阅读维护理解。</li>
-<li>标签上 title 与 alt 属性的区别是什么？<br>alt 是给搜索引擎识别，在图像无法显示时的替代文本；<br>title 是关于元素的注释信息，主要是给用户解读。<br>当鼠标放到文字或是图片上时有 title 文字显示。（因为 IE 不标准）在 IE 浏览器中 alt 起到了 title 的作用，变成文字提示。<br>在定义 img 对象时，将 alt 和 title 属性写全，可以保证在各种浏览器中都能正常使用。</li>
-<li>iframe的优缺点？<br>优点：</li>
-</ol>
-<p>解决加载缓慢的第三方内容如图标和广告等的加载问题Security sandbox并行加载脚本</p>
-<p>缺点：</p>
-<p>iframe会阻塞主页面的Onload事件<br>即时内容为空，加载也需要时间<br>没有语意<br>4. href 与 src？</p>
-<p>href (Hypertext Reference)指定网络资源的位置，从而在当前元素或者当前文档和由当前属性定义的需要的锚点或资源之间定义一个链接或者关系。（目的不是为了引用资源，而是为了建立联系，让当前标签能够链接到目标地址。）<br>src source（缩写），指向外部资源的位置，指向的内容将会应用到文档中当前标签所在位置。</p>
-<p>href与src的区别</p>
-<p>1、请求资源类型不同：href 指向网络资源所在位置，建立和当前元素（锚点）或当前文档（链接）之间的联系。在请求 src 资源时会将其指向的资源下载并应用到文档中，比如 JavaScript 脚本，img 图片；<br>2、作用结果不同：href 用于在当前文档和引用资源之间确立联系；src 用于替换当前内容；<br>3、浏览器解析方式不同：当浏览器解析到src ，会暂停其他资源的下载和处理，直到将该资源加载、编译、执行完毕，图片和框架等也如此，类似于将所指向资源应用到当前内容。这也是为什么建议把 js 脚本放在底部而不是头部的原因。3</p>
-<p>#二、css</p>
-<ol>
-<li>介绍一下 CSS 的盒子模型？</li>
-</ol>
-<p>有两种， IE 盒子模型、W3C 盒子模型；<br>盒模型： 内容(content)、填充(padding)、边界(margin)、 边框(border)；<br>区 别： IE 的 content 部分把 border 和 padding 计算了进去;</p>
-<ol start="2">
-<li>css 选择器优先级？</li>
-</ol>
-<p>!important &gt; 行内样式（比重1000）&gt; ID 选择器（比重100） &gt; 类选择器（比重10） &gt; 标签（比重1） &gt; 通配符 &gt; 继承 &gt; 浏览器默认属性</p>
-<ol start="3">
-<li>垂直居中几种方式？</li>
-</ol>
-<p>单行文本: line-height &#x3D; height<br>图片: vertical-align: middle;<br>absolute 定位: top: 50%;left: 50%;transform: translate(-50%, -50%);<br>flex: display:flex;margin:auto</p>
-<ol start="4">
-<li>简明说一下 CSS link 与 @import 的区别和用法？</li>
-</ol>
-<p>link 是 XHTML 标签，除了加载CSS外，还可以定义 RSS 等其他事务；@import 属于 CSS 范畴，只能加载 CSS。<br>link 引用 CSS 时，在页面载入时同时加载；@import 需要页面网页完全载入以后加载。<br>link 是 XHTML 标签，无兼容问题；@import 是在 CSS2.1 提出的，低版本的浏览器不支持。<br>link 支持使用 Javascript 控制 DOM 去改变样式；而@import不支持。</p>
-<ol start="5">
-<li>rgba和opacity的透明效果有什么不同？</li>
-</ol>
-<p>opacity 会继承父元素的 opacity 属性，而 RGBA 设置的元素的后代元素不会继承不透明属性。</p>
-<ol start="6">
-<li>display:none和visibility:hidden的区别？</li>
-</ol>
-<p>display:none 隐藏对应的元素，在文档布局中不再给它分配空间，它各边的元素会合拢，就当他从来不存在。<br>visibility:hidden 隐藏对应的元素，但是在文档布局中仍保留原来的空间。</p>
-<ol start="7">
-<li>position的值， relative和absolute分别是相对于谁进行定位的？</li>
-</ol>
-<p>relative:相对定位，相对于自己本身在正常文档流中的位置进行定位。<br>absolute:生成绝对定位，相对于最近一级定位不为static的父元素进行定位。<br>fixed: （老版本IE不支持）生成绝对定位，相对于浏览器窗口或者frame进行定位。<br>static:默认值，没有定位，元素出现在正常的文档流中。<br>sticky:生成粘性定位的元素，容器的位置根据正常文档流计算得出。</p>
-<h2 id="简历问题"><a href="#简历问题" class="headerlink" title="简历问题"></a>简历问题</h2>
+                <h4 id="Servlet生命周期"><a href="#Servlet生命周期" class="headerlink" title="Servlet生命周期"></a>Servlet生命周期</h4><p>1、加载和实例化：默认情况下，Servlet第一次被访问时，容器来创建Servlet对象</p>
+<p>2、初始化：在实例化之后，容器将调用Servlet的init（）方法来初始化这个对象，完成一些如配置文件的加载，创建连接等初始化工作，仅调用一次。</p>
+<p>3、请求处理：每次请求Servlet的时候，Servlet容器都会调用Servlet中的Service（）方法对请求进行处理。</p>
+<p>4、服务终止：当需要释放内存或者关闭容器的时候，容器调用Servlet实例的destroy（）方法完成资源的释放。</p>
+<h5 id="Servlet体系结构"><a href="#Servlet体系结构" class="headerlink" title="Servlet体系结构"></a>Servlet体系结构</h5><p>​	Servlet      —-Servlet根接口</p>
+<p>​	GenericServlet —-Servlet抽象实现类</p>
+<p>​	HttpServlet   –http请求类</p>
+<p>​	重写doget（）以及dopost（）方法，实现对不同请求方式，调用不同的方法；</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs scala"><span class="hljs-meta">@WebServlet</span>(<span class="hljs-string">&quot;/demo2&quot;</span>)<br>public <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ServletDemo4http</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">HttpServlet</span> </span>&#123;<br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> void doGet(<span class="hljs-type">HttpServletRequest</span> req, <span class="hljs-type">HttpServletResponse</span> resp) <span class="hljs-keyword">throws</span> <span class="hljs-type">ServletException</span>, <span class="hljs-type">IOException</span> &#123;<br>        <span class="hljs-type">System</span>.out.println(<span class="hljs-string">&quot;this is get&quot;</span>);<br>    &#125;<br><br>    <span class="hljs-meta">@Override</span><br>    <span class="hljs-keyword">protected</span> void doPost(<span class="hljs-type">HttpServletRequest</span> req, <span class="hljs-type">HttpServletResponse</span> resp) <span class="hljs-keyword">throws</span> <span class="hljs-type">ServletException</span>, <span class="hljs-type">IOException</span> &#123;<br>        <span class="hljs-type">System</span>.out.println(<span class="hljs-string">&quot;this is post&quot;</span>);<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>​	</p>
+<h4 id="在Servlet中的Service（）方法判断访问的方式"><a href="#在Servlet中的Service（）方法判断访问的方式" class="headerlink" title="在Servlet中的Service（）方法判断访问的方式"></a>在Servlet中的Service（）方法判断访问的方式</h4><p>可创建一个逻辑类，将来其他类将继承次逻辑类，复用逻辑判断方法。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-title class_">HttpServletRequest</span> request=(<span class="hljs-title class_">HttpServletRequest</span>) servletRequest;<br><span class="hljs-comment">//获取http的request请求，并进行强制类型装换</span><br><span class="hljs-title class_">String</span> coo=request.<span class="hljs-title function_">getMethod</span>();<br><span class="hljs-comment">//使用getMethod（）方法获取请求方式</span><br><span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;GET&quot;</span>.<span class="hljs-title function_">equals</span>(coo))&#123;<br><br>    <span class="hljs-title function_">doget</span>(servletRequest,servletResponse);<br>&#125;<br><span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span> (<span class="hljs-string">&quot;POST&quot;</span>.<span class="hljs-title function_">equals</span>(coo))&#123;<br><br>    <span class="hljs-title function_">dopost</span>(servletRequest,servletResponse);<br>&#125;<br><br><span class="hljs-keyword">protected</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">dopost</span>(<span class="hljs-params">ServletRequest servletRequest, ServletResponse servletResponse</span>) &#123;<br>    &#125;<br><br>    <span class="hljs-keyword">protected</span> <span class="hljs-built_in">void</span> <span class="hljs-title function_">doget</span>(<span class="hljs-params">ServletRequest servletRequest, ServletResponse servletResponse</span>) &#123; <br>    <span class="hljs-comment">//protected  将来方法要被别的类进行复写</span><br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>将来在其他类中直接继承逻辑类，调用doget（），或者dopost（）方法进行逻辑判断。</p>
+
                 
               </div>
             
@@ -339,7 +315,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95/" class="category-chain-item">前端面试</a>
+  <a href="/categories/Servlet/" class="category-chain-item">Servlet</a>
   
   
 
@@ -359,8 +335,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>前端面试秘籍</div>
-      <div>https://yuhang111881.github.io/yuhang111881.github.io/2024/01/10/前端面试秘籍/</div>
+      <div>什么是Servlet</div>
+      <div>https://yuhang111881.github.io/yuhang111881.github.io/2025/07/26/什么是Servlet/</div>
     </div>
     <div class="license-meta">
       
@@ -372,7 +348,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年1月10日</div>
+          <div>2025年7月26日</div>
         </div>
       
       
@@ -404,9 +380,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/01/10/%E4%BB%80%E4%B9%88%E6%98%AFServlet/" title="什么是Servlet">
+                      <a href="/2025/07/26/web/" title="Web开发笔记">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">什么是Servlet</span>
+                        <span class="hidden-mobile">Web开发笔记</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -414,8 +390,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2023/09/11/Ajax/" title="Ajax">
-                        <span class="hidden-mobile">Ajax</span>
+                      <a href="/2025/07/26/%E5%89%8D%E7%AB%AF%E9%9D%A2%E8%AF%95%E7%A7%98%E7%B1%8D/" title="前端面试秘籍">
+                        <span class="hidden-mobile">前端面试秘籍</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
